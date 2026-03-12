@@ -1,0 +1,303 @@
+[
+  {
+    "id": 8479318,
+    "name": "Auston Matthews",
+    "team": "Toronto Maple Leafs",
+    "number": 34,
+    "position": "Centro",
+    "nationality": "EUA",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8479318.png",
+    "description": "O sniper mais dominante da NHL moderna. Matthews é um fenômeno ofensivo com um shot de pulso devastador — marcou 69 gols na temporada 2023-24, o maior de sua carreira. Ganhou o Hart Trophy em 2022 e é o rosto da franquia dos Leafs."
+  },
+  {
+    "id": 8478483,
+    "name": "Mitch Marner",
+    "team": "Toronto Maple Leafs",
+    "number": 16,
+    "position": "Ala Direita",
+    "nationality": "Canadá",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8478483.png",
+    "description": "Mago da criatividade no gelo. Marner é um dos melhores passadores da NHL, com visão de jogo sobrenatural e pés rápidos. Seu duo com Matthews forma uma das duplas mais eletrizantes do hockey contemporâneo."
+  },
+  {
+    "id": 8482011,
+    "name": "Connor Bedard",
+    "team": "Chicago Blackhawks",
+    "number": 98,
+    "position": "Centro",
+    "nationality": "Canadá",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8482011.png",
+    "description": "A maior promessa da geração. Selecionado 1° geral no Draft de 2023, Bedard impressionou na estreia com 61 pontos como rookie. Seu shot e sua inteligência de jogo são comparados aos maiores da história do esporte."
+  },
+  {
+    "id": 8483493,
+    "name": "Will Smith",
+    "team": "San Jose Sharks",
+    "number": 51,
+    "position": "Centro",
+    "nationality": "EUA",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8483493.png",
+    "description": "Escolhido 4° geral no Draft de 2023, Will Smith chegou com muito hype ao San Jose. Jovem centro americano com excelente QI de jogo, bom tiro e capacidade de criar jogadas. É peça central do projeto de reconstrução dos Sharks."
+  },
+  {
+    "id": 8484144,
+    "name": "Macklin Celebrini",
+    "team": "San Jose Sharks",
+    "number": 71,
+    "position": "Centro",
+    "nationality": "Canadá",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8484144.png",
+    "description": "O 1° geral do Draft de 2024. Celebrini é tido como o futuro da franquia em San Jose — um centro completo com liderança natural, passe preciso e visão de jogo de veterano. Chegou rodeado de comparações com os maiores centros da NHL."
+  },
+  {
+    "id": 8477934,
+    "name": "Leon Draisaitl",
+    "team": "Edmonton Oilers",
+    "number": 29,
+    "position": "Centro/Ala",
+    "nationality": "Alemanha",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8477934.png",
+    "description": "O melhor jogador alemão da história da NHL. Draisaitl combina força física, passe de elite e tiro explosivo. Ganhou o Hart Trophy em 2020 com 110 pontos e é o parceiro perfeito de McDavid nos Oilers."
+  },
+  {
+    "id": 8477492,
+    "name": "Nathan MacKinnon",
+    "team": "Colorado Avalanche",
+    "number": 29,
+    "position": "Centro",
+    "nationality": "Canadá",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8477492.png",
+    "description": "Considerado por muitos o melhor jogador da NHL. MacKinnon combina velocidade absurda, força e habilidade técnica incomparável. Dois-vezes Hart Trophy winner, liderou o Colorado ao título da Stanley Cup em 2022."
+  },
+  {
+    "id": 8471675,
+    "name": "Sidney Crosby",
+    "team": "Pittsburgh Penguins",
+    "number": 87,
+    "position": "Centro",
+    "nationality": "Canadá",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8471675.png",
+    "description": "O Sid the Kid, agora um lendário veterano. Crosby é o maior jogador da sua geração — três Copas Stanley, dois Harts, dois Conn Smythes. Sua liderança, ética de trabalho e consistência são incomparáveis no esporte."
+  },
+  {
+    "id": 8471214,
+    "name": "Alex Ovechkin",
+    "team": "Washington Capitals",
+    "number": 8,
+    "position": "Ala Esquerda",
+    "nationality": "Rússia",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8471214.png",
+    "description": "O Rei dos Gols. Ovechkin se tornou o maior artilheiro da história da NHL, ultrapassando Wayne Gretzky. Seu shot de potência da blue line é o mais temido da história do esporte. Ídolo eterno de Washington."
+  },
+  {
+    "id": 8477956,
+    "name": "David Pastrnak",
+    "team": "Boston Bruins",
+    "number": 88,
+    "position": "Ala Direita",
+    "nationality": "República Tcheca",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8477956.png",
+    "description": "O Pasta. Pastrnak é um dos maiores snipers da NHL com um arsenal ofensivo completo. Marcou 60+ gols em múltiplas temporadas e é o coração criativo dos Bruins de Boston."
+  },
+  {
+    "id": 8476453,
+    "name": "Nikita Kucherov",
+    "team": "Tampa Bay Lightning",
+    "number": 86,
+    "position": "Ala Direita",
+    "nationality": "Rússia",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8476453.png",
+    "description": "O gênio russo do Lightning. Kucherov detém o recorde de pontos em uma temporada na era moderna (144pts em 2023-24). Dois-vezes Art Ross Trophy winner, é o líder criativo das duas Stanley Cups seguidas de Tampa."
+  },
+  {
+    "id": 8480069,
+    "name": "Cale Makar",
+    "team": "Colorado Avalanche",
+    "number": 8,
+    "position": "Defensor",
+    "nationality": "Canadá",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8480069.png",
+    "description": "O melhor defensor da NHL. Makar revolucionou a posição com sua velocidade, visão de jogo e capacidade ofensiva. Ganhou o Norris Trophy em 2022 e o Conn Smythe na conquista da Stanley Cup do Colorado."
+  },
+  {
+    "id": 8481533,
+    "name": "Jack Hughes",
+    "team": "New Jersey Devils",
+    "number": 86,
+    "position": "Centro",
+    "nationality": "EUA",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8481533.png",
+    "description": "Patinador extraordinário e centro de elite. Hughes foi o 1° geral de 2019 e tem evoluído a cada temporada com os Devils. Sua velocidade e criatividade em espaços pequenos são entre as melhores da liga."
+  },
+  {
+    "id": 8480291,
+    "name": "Quinn Hughes",
+    "team": "Vancouver Canucks",
+    "number": 43,
+    "position": "Defensor",
+    "nationality": "EUA",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8480291.png",
+    "description": "O defensor mais ofensivo da NHL. Irmão de Jack Hughes, Quinn ganhou o Norris Trophy em 2024 liderando o Vancouver. Tem o passe mais preciso entre os D-men da liga e uma capacidade rara de controlar o jogo."
+  },
+  {
+    "id": 8480012,
+    "name": "Elias Pettersson",
+    "team": "Vancouver Canucks",
+    "number": 40,
+    "position": "Centro",
+    "nationality": "Suécia",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8480012.png",
+    "description": "O cérebro dos Canucks. Pettersson é um centro sueco de elite com passe cirúrgico e um tiro de pulso letal. Junto com Quinn Hughes, formou uma das melhores duplas da temporada 2023-24 de Vancouver."
+  },
+  {
+    "id": 8478010,
+    "name": "Brayden Point",
+    "team": "Tampa Bay Lightning",
+    "number": 21,
+    "position": "Centro",
+    "nationality": "Canadá",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8478010.png",
+    "description": "O motor do Lightning. Point é talvez o jogador mais subestimado da NHL — consistentemente produz 90+ pontos, é excelente no face-off e joga em todas as situações especiais. Dois anéis de Stanley Cup no currículo."
+  },
+  {
+    "id": 8479314,
+    "name": "Matthew Tkachuk",
+    "team": "Florida Panthers",
+    "number": 19,
+    "position": "Ala Esquerda",
+    "nationality": "EUA",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8479314.png",
+    "description": "O líder dos campeões da Stanley Cup 2024. Tkachuk combina talento elite com intensidade física e mentalidade de playoff. Seu Conn Smythe em 2024 coroou uma performance histórica que levou os Panthers ao título."
+  },
+  {
+    "id": 8481528,
+    "name": "Brady Tkachuk",
+    "team": "Ottawa Senators",
+    "number": 7,
+    "position": "Ala Esquerda",
+    "nationality": "EUA",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8481528.png",
+    "description": "O capitão e coração dos Senators. Irmão de Matthew, Brady é um power forward completo — fisicamente dominante, com bom tiro e grande liderança. É o rosto da reconstrução de Ottawa rumo aos playoffs."
+  },
+  {
+    "id": 8481600,
+    "name": "Kirill Kaprizov",
+    "team": "Minnesota Wild",
+    "number": 97,
+    "position": "Ala Esquerda",
+    "nationality": "Rússia",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8481600.png",
+    "description": "A estrela que ilumina Minnesota. Kaprizov chegou da Rússia e imediatamente dominou a NHL, vencendo o Calder Trophy em 2021. Seu estilo criativo, seus dekes e seu tiro fazem dele um dos atacantes mais empolgantes da liga."
+  },
+  {
+    "id": 8477493,
+    "name": "Aleksander Barkov",
+    "team": "Florida Panthers",
+    "number": 16,
+    "position": "Centro",
+    "nationality": "Finlândia",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8477493.png",
+    "description": "O melhor two-way center da NHL. Barkov ganhou o Selke Trophy múltiplas vezes por seu jogo defensivo impecável, mas também produz 90+ pontos na ofensiva. Capitão exemplar dos campeões da Florida."
+  },
+  {
+    "id": 8478427,
+    "name": "Sebastian Aho",
+    "team": "Carolina Hurricanes",
+    "number": 20,
+    "position": "Centro",
+    "nationality": "Finlândia",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8478427.png",
+    "description": "O motor silencioso dos Hurricanes. Aho é consistentemente um dos centros mais produtivos da NHL, acumulando 80-90 pontos por temporada com regularidade. Sua consistência e nível de jogo elevado o colocam entre a elite."
+  },
+  {
+    "id": 8479346,
+    "name": "Tage Thompson",
+    "team": "Buffalo Sabres",
+    "number": 72,
+    "position": "Centro",
+    "nationality": "EUA",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8479346.png",
+    "description": "O gigante de Buffalo. Thompson é um centro de 6'6\" com um conjunto de habilidades extraordinário — marcou 47 gols em 2022-23 e 40+ em temporadas consecutivas. A maior esperança de uma franquia que anseia por uma era de vitórias."
+  },
+  {
+    "id": 8480225,
+    "name": "Adam Fox",
+    "team": "New York Rangers",
+    "number": 23,
+    "position": "Defensor",
+    "nationality": "EUA",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8480225.png",
+    "description": "O cérebro azul dos Rangers. Fox ganhou o Norris Trophy em 2021 como o melhor defensor da NHL, impressionando com sua leitura de jogo excepcional e passe de elite. É o coração da defensiva de Nova York."
+  },
+  {
+    "id": 8478009,
+    "name": "Igor Shesterkin",
+    "team": "New York Rangers",
+    "number": 31,
+    "position": "Goleiro",
+    "nationality": "Rússia",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8478009.png",
+    "description": "O melhor goleiro da NHL. Shesterkin praticamente ganhou o Hart Trophy em 2022 — um goleiro que sozinho mudou o rumo dos Rangers. Seus reflexos sobrenaturais e posicionamento perfeito o colocam no panteão dos maiores."
+  },
+  {
+    "id": 8474600,
+    "name": "Roman Josi",
+    "team": "Nashville Predators",
+    "number": 59,
+    "position": "Defensor",
+    "nationality": "Suíça",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8474600.png",
+    "description": "O melhor defensor suíço de todos os tempos. Josi ganhou o Norris Trophy em 2020 e continua sendo um dos melhores D-men da liga. Seu tiro de longa distância e sua capacidade de criar jogo são excepcionais."
+  },
+  {
+    "id": 8476882,
+    "name": "Mark Scheifele",
+    "team": "Winnipeg Jets",
+    "number": 55,
+    "position": "Centro",
+    "nationality": "Canadá",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8476882.png",
+    "description": "O capitão e líder dos Jets. Scheifele é um centro completo com excelente produção ofensiva e forte jogo nos dois sentidos. É a âncora da franquia de Winnipeg e um dos centros mais confiáveis da liga."
+  },
+  {
+    "id": 8477946,
+    "name": "Dylan Larkin",
+    "team": "Detroit Red Wings",
+    "number": 71,
+    "position": "Centro",
+    "nationality": "EUA",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8477946.png",
+    "description": "O rosto da ressurreição dos Red Wings. Larkin assumiu o papel de capitão e lidera Detroit de volta à relevância. Com 30+ gols por temporada e liderança autêntica, ele é o pilar central do projeto de reconstrução."
+  },
+  {
+    "id": 8477981,
+    "name": "Sam Reinhart",
+    "team": "Florida Panthers",
+    "number": 13,
+    "position": "Ala Direita",
+    "nationality": "Canadá",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8477981.png",
+    "description": "O campeão que chegou ao nível elite. Reinhart marcou 57 gols em 2023-24 — a melhor temporada de sua carreira — e foi peça fundamental nos dois títulos dos Panthers. Seu tiro letal e inteligência tática o tornaram uma das maiores revelações da liga."
+  },
+  {
+    "id": 8477404,
+    "name": "Jake Guentzel",
+    "team": "Carolina Hurricanes",
+    "number": 59,
+    "position": "Ala Esquerda",
+    "nationality": "EUA",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8477404.png",
+    "description": "O especialista em playoffs. Guentzel ficou famoso pelos gols decisivos com Pittsburgh e agora traz sua mentalidade vencedora para Carolina. Um finalizador instintivo que eleva seu nível nos momentos mais importantes."
+  },
+  {
+    "id": 8476468,
+    "name": "J.T. Miller",
+    "team": "Vancouver Canucks",
+    "number": 9,
+    "position": "Centro/Ala",
+    "nationality": "EUA",
+    "image": "https://assets.nhle.com/mugs/nhl/20242025/8476468.png",
+    "description": "Um dos jogadores mais completos da NHL. Miller é o terceiro pilar dos Canucks ao lado de Pettersson e Quinn Hughes. Sua produção ofensiva, jogo físico e capacidade de jogar em diversas posições o tornam indispensável."
+  }
+]
+

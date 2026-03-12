@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jogadores da NHL</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <script defer th:src="@{/js/app.js}"></script>
+  </head>
+  <body>
+    <div th:replace="~{fragments/nav :: nav('nhl')}"></div>
+
+    <main class="container">
+      <header class="page-head">
+        <h1>Jogadores da NHL</h1>
+        <p class="muted">
+          Toque/clique em um card para virar e ver a descrição.
+        </p>
+      </header>
+
+      <section class="cards-grid" aria-label="Cards de jogadores da NHL">
+        <button
+          class="flip-card"
+          type="button"
+          th:each="p : ${players}"
+          th:attr="data-flip-card=true, aria-label=${'Ver detalhes de ' + p.name}"
+        >
+          <span class="flip-card__inner">
+            <span class="flip-card__face flip-card__front">
+              <span class="player-card">
+                <img
+                  class="player-card__img"
+                  th:src="${p.image}"
+                  th:alt="${p.name}"
+                  loading="lazy"
+                  referrerpolicy="no-referrer"
+                />
+                <span class="player-card__name" th:text="${p.name}"></span>
+                <span class="player-card__team" th:text="${p.team}"></span>
+                <span class="player-card__meta"
+                  ><span th:text="${'#' + p.number}"></span> •
+                  <span th:text="${p.position}"></span
+                ></span>
+              </span>
+            </span>
+
+            <span class="flip-card__face flip-card__back">
+              <span class="player-card player-card--back">
+                <span class="player-card__name" th:text="${p.name}"></span>
+                <span class="player-card__team" th:text="${p.team}"></span>
+                <span class="player-card__desc" th:text="${p.description}"></span>
+                <span class="player-card__hint">Toque para voltar</span>
+              </span>
+            </span>
+          </span>
+        </button>
+      </section>
+    </main>
+  </body>
+</html>

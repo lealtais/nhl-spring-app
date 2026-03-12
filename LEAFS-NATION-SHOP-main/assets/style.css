@@ -1,0 +1,213 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #ffffff;
+  color: #000000;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+main.container{
+  background-color: white;
+}
+
+.header nav {
+  margin-bottom: 0.5rem;
+}
+
+.back-arrow {
+  font-size: 24px;
+  text-decoration: none;
+  color: black;
+}
+
+.banner {
+  background-image: url('https://media-www.sportchek.ca/category-content/2025/sportchek-jerseys-fan-wear/odp-2025-sportchek-hp-wk18-wodp-feat-cat-nhl-playoffs-3j-v3.png'); 
+  background-size: cover;       
+  background-position: center;  
+  background-repeat: no-repeat; 
+  
+  height: 200px;
+  border-radius: 1rem;
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  margin: 0px;
+}
+
+.title-section h1 {
+  margin: 0;
+  font-size: 24px;
+  color: white;
+}
+
+.subtitle {
+  color: #eee;
+}
+
+.buttons {
+  margin-top: 0.5rem;
+}
+
+button {
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #eee;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.times h2,
+.section-title h2 {
+  margin-top: 2rem;
+  font-size: 18px;
+
+}
+
+
+.circle-list {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  overflow-x: auto;
+  list-style: none;
+  padding: 0;
+}
+
+.circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  
+}
+
+.circle.active {
+  border: 2px solid red;
+  background-color: white;
+}
+
+#leafs-logo{
+   background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/b/b6/Toronto_Maple_Leafs_2016_logo.svg/800px-Toronto_Maple_Leafs_2016_logo.svg.png'); /* Caminho da imagem */
+  background-size: cover;       /* Preenche a tela inteira */
+  background-position: center;  /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Não repete a imagem */
+  
+}
+
+#flyers-logo{
+   background-image: url('https://kgo.googleusercontent.com/profile_vrt_raw_bytes_1587515400_10886.png'); /* Caminho da imagem */
+  background-size: cover;       /* Preenche a tela inteira */
+  background-position: center;  /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Não repete a imagem */
+  
+}
+
+.card-list {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  background-color: #ddd;
+  border-radius: 1rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.card.large {
+  flex: 1;
+  min-width: 200px;
+}
+
+.card.small {
+  width: 120px;
+  min-width: 120px;
+  height: 160px;
+}
+
+.card.large img,
+.card.small img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.card .label {
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.card footer p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+
+
+.icon {
+  font-size: 24px;
+}
+
+.label {
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.artist,
+.track-title {
+  margin: 0;
+  font-size: 12px;
+}
+
+
+.panel-shirt img {
+
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+.panel-shirt img {
+      width: 100%;
+      height: 100%;
+      background-size: cover;       
+      background-position: center; 
+      display: block;
+      object-fit: cover;
+
+}
+
+
+.footer {
+  width: 100%;
+  background-color: #00205B;
+  color: white;
+  padding: 2rem 0;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.footer a {
+  color: #ffffffcc;
+  margin: 0 1rem;
+  text-decoration: none;
+}

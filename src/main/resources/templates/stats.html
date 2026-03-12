@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Estatísticas de jogos</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <script defer th:src="@{/js/app.js}"></script>
+  </head>
+  <body>
+    <div th:replace="~{fragments/nav :: nav('stats')}"></div>
+
+    <main class="container">
+      <header class="page-head">
+        <h1>Estatísticas de jogos</h1>
+        <p class="muted">Rota interna: <code>/estatisticas-de-jogos</code>.</p>
+      </header>
+
+      <section class="grid grid--tight">
+        <article class="stat">
+          <div class="stat__label">Jogos</div>
+          <div class="stat__value">82</div>
+        </article>
+        <article class="stat">
+          <div class="stat__label">Gols</div>
+          <div class="stat__value">0</div>
+        </article>
+        <article class="stat">
+          <div class="stat__label">Assistências</div>
+          <div class="stat__value">0</div>
+        </article>
+        <article class="stat">
+          <div class="stat__label">Pontos</div>
+          <div class="stat__value">0</div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

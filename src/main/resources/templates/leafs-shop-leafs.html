@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LeafsNation • Produtos</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <link rel="stylesheet" th:href="@{/leafs-shop/leafsPageStyle.css}" />
+    <script defer th:src="@{/js/app.js}"></script>
+  </head>
+  <body>
+    <div th:replace="~{fragments/nav :: nav('shop')}"></div>
+
+    <div class="leafs-shop">
+      <main class="layout">
+        <aside class="sidebar">
+          <section>
+            <h2>Keywords</h2>
+            <ul>
+              <li><button type="button">Spring ✕</button></li>
+              <li><button type="button">Smart ✕</button></li>
+              <li><button type="button">Modern ✕</button></li>
+            </ul>
+          </section>
+
+          <form>
+            <fieldset>
+              <legend>Products</legend>
+              <label><input type="checkbox" checked /> Clothes</label><br />
+              <label><input type="checkbox" checked /> Hats</label><br />
+              <label><input type="checkbox" checked /> Acessories</label>
+              <label for="price">Label</label>
+              <input type="range" min="0" max="100" id="price" />
+            </fieldset>
+
+            <fieldset>
+              <legend>Color</legend>
+              <label><input type="checkbox" checked /> Blue</label><br />
+              <label><input type="checkbox" checked /> White</label><br />
+              <label><input type="checkbox" checked /> Black</label>
+            </fieldset>
+
+            <fieldset>
+              <legend>Size</legend>
+              <label><input type="checkbox" checked /> Label</label><br />
+              <label><input type="checkbox" checked /> Label</label><br />
+              <label><input type="checkbox" checked /> Label</label>
+            </fieldset>
+          </form>
+        </aside>
+
+        <section class="main-content">
+          <header class="toolbar">
+            <form>
+              <label for="search">Search</label>
+              <input type="search" id="search" placeholder="Search" />
+            </form>
+
+            <a
+              th:href="@{/leafs-nation-shop}"
+              style="text-decoration: none; padding: 0.5rem 0.75rem"
+              >← Voltar</a
+            >
+
+            <menu class="dropdown">
+              <li>
+                <button type="button">A</button> List item
+                <menu>
+                  <li>Size</li>
+                  <li>Quantity</li>
+                </menu>
+              </li>
+              <li>
+                <button type="button">A</button> List item
+                <menu>
+                  <li>Size</li>
+                  <li>Quantity</li>
+                </menu>
+              </li>
+            </menu>
+          </header>
+
+          <section class="grid">
+            <article class="product">
+              <img
+                src="https://fanatics.frgimages.com/toronto-maple-leafs/mens-47-navy-toronto-maple-leafs-team-clean-up-adjustable-hat_pi4028000_ff_4028803-0c55d82354f805418204_full.jpg?_hv=2&w=400"
+                alt="Navy blue hockey cap"
+              />
+              <p>Navy blue hockey cap</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://fanatics.frgimages.com/toronto-maple-leafs/mens-mitchell-and-ness-white-toronto-maple-leafs-core-team-ground-20-snapback-hat_ss5_p-200398862+u-eyhjqbs2toftqsveqqyh+v-elruzwrklnemup5j3nod.jpg?_hv=2&w=400"
+                alt="Navy blue and white hockey cap"
+              />
+              <p>Navy blue and White hockey cap</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://fanatics.frgimages.com/toronto-maple-leafs/womens-fanatics-mitchell-marner-black-toronto-maple-leafs-alternate-premier-breakaway-reversible-player-jersey_pi4299000_altimages_ff_4299173-876faf9b620aac273769alt1_full.jpg?_hv=2&w=900"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://fanatics.frgimages.com/toronto-maple-leafs/mens-concepts-sport-navy-toronto-maple-leafs-big-and-tall-pullover-hoodie-and-joggers-sleep-set_pi4349000_altimages_ff_4349177-c1c184f142c2f8af34a6alt1_full.jpg?_hv=2&w=900"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://fanatics.frgimages.com/toronto-maple-leafs/toronto-maple-leafs-unsigned-sportstar-royal-blue-mini-helmet_pi4042000_ff_4042655-3fbfd2c4304309ed15e3_full.jpg?_hv=2&w=900"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://images.footballfanatics.com/toronto-maple-leafs/womens-fanatics-white/blue-toronto-maple-leafs-authentic-pro-rink-cuffed-knit-hat-with-pom_ss5_p-200897938+u-k0dt6qjecqeuxjkh8iiv+v-6wkf5iqfbrdqd9z4bhsx.jpg?_hv=2&w=400"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://fanatics.frgimages.com/toronto-maple-leafs/wincraft-toronto-maple-leafs-20-x-30-personalized-floor-mat_pi3801000_ff_3801078-f468217bd847291388e4_full.jpg?_hv=2&w=400"
+                alt="Product"
+              />
+              <p>txt</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://images.footballfanatics.com/toronto-maple-leafs/toronto-maple-leafs-unsigned-1967-stanley-cup-champions-logo-hockey-puck_pi3082000_ff_3082174_full.jpg?_hv=2&w=400"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://images.footballfanatics.com/toronto-maple-leafs/tervis-toronto-maple-leafs-24oz-top-shelf-classic-tumbler_pi5057000_ff_5057449-b937cebc8d2c6d9b65cd_full.jpg?_hv=2&w=400"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://images.footballfanatics.com/toronto-maple-leafs/wincraft-toronto-maple-leafs-4-pack-12oz-can-and-slim-can-cooler-set_ss5_p-201708819+u-brnq7i7f1i6ykdlvkela+v-thgpevf4vc9epp5uyczg.jpg?_hv=2&w=400"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://images.footballfanatics.com/toronto-maple-leafs/womens-fanatics-white/blue-toronto-maple-leafs-authentic-pro-rink-cuffed-knit-hat-with-pom_ss5_p-200897938+u-k0dt6qjecqeuxjkh8iiv+v-6wkf5iqfbrdqd9z4bhsx.jpg?_hv=2&w=400"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://fanatics.frgimages.com/toronto-maple-leafs/mitchell-marner-toronto-maple-leafs-3575-x-2425-player-poster_pi4392000_ff_4392233-baa6d3f1809fbaf9f212_full.jpg?_hv=2&w=400"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://images.footballfanatics.com/toronto-maple-leafs/toronto-maple-leafs-mahogany-logo-mini-helmet-display-case_pi3935000_ff_3935487-fec3f4ae4849afd524dd_full.jpg?_hv=2&w=400"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://images.footballfanatics.com/toronto-maple-leafs/tervis-toronto-maple-leafs-16oz-tradition-classic-mug_ss5_p-200028182+u-5c8uhyalkh495csm9yp7+v-ythew2wyq16nsjlnglcd.jpg?_hv=2&w=400"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://images.footballfanatics.com/toronto-maple-leafs/foco-toronto-maple-leafs-ball-garden-stone_pi4532000_ff_4532057-c3a5025b94021af418af_full.jpg?_hv=2&w=400"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://images.footballfanatics.com/toronto-maple-leafs/tervis-toronto-maple-leafs-24oz-all-over-classic-tumbler_pi5033000_ff_5033952-b3091f150a48d78ff438_full.jpg?_hv=2&w=400"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://images.footballfanatics.com/toronto-maple-leafs/womens-wear-by-erin-andrews-toronto-maple-leafs-stripe-glove-and-scarf-set_ss5_p-5359609+u-tykmtuuxbcqfr7ytnoiu+v-t7chucwhn34qi828vbf2.jpg?_hv=2&w=400"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://fanatics.frgimages.com/toronto-maple-leafs/toronto-maple-leafs-personalized-wireless-keyboard_pi4734000_ff_4734150-accb61434cbeb95b33a5_full.jpg?_hv=2&w=400"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://fanatics.frgimages.com/toronto-maple-leafs/toronto-maple-leafs-personalized-insignia-design-wireless-earbuds_pi4734000_ff_4734182-59914cbd6332fd07f20b_full.jpg?_hv=2&w=400"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+            <article class="product">
+              <img
+                src="https://fanatics.frgimages.com/toronto-maple-leafs/toronto-maple-leafs-personalized-bluetooth-gaming-headphones-and-stand_pi5192000_ff_5192240-863de2c394c06011b496_full.jpg?_hv=2&w=400"
+                alt="Product"
+              />
+              <p>Text</p>
+              <strong>$0</strong>
+            </article>
+          </section>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
+

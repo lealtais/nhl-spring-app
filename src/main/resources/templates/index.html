@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NHL Spring App</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <script defer th:src="@{/js/app.js}"></script>
+  </head>
+  <body>
+    <div th:replace="~{fragments/nav :: nav('home')}"></div>
+
+    <main class="container">
+      <section class="grid">
+        <a class="card" th:href="@{/jogadores/nhl}">
+          <h2 class="card__title">Jogadores da NHL</h2>
+          <p class="card__text">Lista/página de jogadores da NHL.</p>
+        </a>
+        <a class="card" th:href="@{/jogadores/pwhl}">
+          <h2 class="card__title">Jogadores da PWHL</h2>
+          <p class="card__text">Lista/página de jogadores da PWHL.</p>
+        </a>
+        <a class="card" th:href="@{/leafs-nation-shop}">
+          <h2 class="card__title">Leafs Nation SHOP</h2>
+          <p class="card__text">Acesso ao shop (rota interna).</p>
+        </a>
+        <a class="card" th:href="@{/estatisticas-de-jogos}">
+          <h2 class="card__title">Estatísticas de jogos</h2>
+          <p class="card__text">Página de estatísticas (rota interna).</p>
+        </a>
+        <a class="card" th:href="@{/site-oficial-nhl}">
+          <h2 class="card__title">Site oficial da NHL</h2>
+          <p class="card__text">Redireciona para nhl.com.</p>
+        </a>
+      </section>
+    </main>
+  </body>
+</html>

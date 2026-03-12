@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <header class="site-header" th:fragment="nav(active)">
+      <a class="brand" th:href="@{/}" aria-label="Página inicial">
+        <span class="brand__mark">NHL</span>
+        <span class="brand__name">Spring App</span>
+      </a>
+
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-controls="primary-nav"
+        aria-expanded="false"
+        data-nav-toggle
+      >
+        <span class="nav-toggle__icon" aria-hidden="true"></span>
+        <span class="sr-only">Abrir menu</span>
+      </button>
+
+      <nav id="primary-nav" class="nav" aria-label="Menu principal" data-nav>
+        <a
+          class="nav__link"
+          th:href="@{/jogadores/nhl}"
+          th:attr="data-active=${active == 'nhl'}"
+        >
+          Jogadores da NHL
+        </a>
+        <a
+          class="nav__link"
+          th:href="@{/jogadores/pwhl}"
+          th:attr="data-active=${active == 'pwhl'}"
+        >
+          Jogadores da PWHL
+        </a>
+        <a
+          class="nav__link"
+          th:href="@{/leafs-nation-shop}"
+          th:attr="data-active=${active == 'shop'}"
+        >
+          Leafs Nation SHOP
+        </a>
+        <a
+          class="nav__link"
+          th:href="@{/estatisticas-de-jogos}"
+          th:attr="data-active=${active == 'stats'}"
+        >
+          Estatísticas de jogos
+        </a>
+        <a
+          class="nav__link nav__link--external"
+          th:href="@{/site-oficial-nhl}"
+          th:attr="data-active=${active == 'nhlOfficial'}"
+          rel="noopener"
+        >
+          Site oficial da NHL
+        </a>
+      </nav>
+    </header>
+  </body>
+</html>

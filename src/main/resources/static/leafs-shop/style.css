@@ -1,0 +1,182 @@
+.leafs-shop {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #ffffff;
+  color: #000000;
+}
+
+.leafs-shop .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.leafs-shop main.container {
+  background-color: white;
+}
+
+.leafs-shop .header nav {
+  margin-bottom: 0.5rem;
+}
+
+.leafs-shop .back-arrow {
+  font-size: 24px;
+  text-decoration: none;
+  color: black;
+}
+
+.leafs-shop .banner {
+  background-image: url("https://media-www.sportchek.ca/category-content/2025/sportchek-jerseys-fan-wear/odp-2025-sportchek-hp-wk18-wodp-feat-cat-nhl-playoffs-3j-v3.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  height: 200px;
+  border-radius: 1rem;
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  margin: 0px;
+}
+
+.leafs-shop .title-section h1 {
+  margin: 0;
+  font-size: 24px;
+  color: white;
+}
+
+.leafs-shop .subtitle {
+  color: #eee;
+}
+
+.leafs-shop .buttons {
+  margin-top: 0.5rem;
+}
+
+.leafs-shop button {
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #eee;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.leafs-shop .times h2,
+.leafs-shop .section-title h2 {
+  margin-top: 2rem;
+  font-size: 18px;
+}
+
+.leafs-shop .circle-list {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  overflow-x: auto;
+  list-style: none;
+  padding: 0;
+}
+
+.leafs-shop .circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.leafs-shop .circle a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.leafs-shop .circle.active {
+  border: 2px solid red;
+  background-color: white;
+}
+
+.leafs-shop #leafs-logo {
+  background-image: url("https://upload.wikimedia.org/wikipedia/en/thumb/b/b6/Toronto_Maple_Leafs_2016_logo.svg/800px-Toronto_Maple_Leafs_2016_logo.svg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.leafs-shop #flyers-logo {
+  background-image: url("https://kgo.googleusercontent.com/profile_vrt_raw_bytes_1587515400_10886.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.leafs-shop .card-list {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0;
+  list-style: none;
+}
+
+.leafs-shop .card {
+  background-color: #ddd;
+  border-radius: 1rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.leafs-shop .card.large {
+  flex: 1;
+  min-width: 200px;
+}
+
+.leafs-shop .card.small {
+  width: 120px;
+  min-width: 120px;
+  height: 160px;
+}
+
+.leafs-shop .card.large img,
+.leafs-shop .card.small img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.leafs-shop .card .label {
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.leafs-shop .card footer p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+.leafs-shop .icon {
+  font-size: 24px;
+}
+
+.leafs-shop .label {
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.leafs-shop .artist,
+.leafs-shop .track-title {
+  margin: 0;
+  font-size: 12px;
+}
+
+.leafs-shop .panel-shirt img {
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  background-position: center;
+  display: block;
+  object-fit: cover;
+}
+

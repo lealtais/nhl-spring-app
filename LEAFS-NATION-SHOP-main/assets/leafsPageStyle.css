@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #f7f7fb;
+}
+
+.layout {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.sidebar {
+  width: 250px;
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.main-content {
+  flex: 1;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+
+#search input {
+  width: 300px;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+#search{
+  border-radius: 10rem;
+  border: none;
+  padding: 0.5rem;
+
+
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.grid img {
+    max-width: 100%;
+    height: auto;
+    -ms-interpolation-mode: bicubic;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+.product {
+  
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  margin: px;
+  grid-column: span 2; 
+}
+
+.dropdown {
+  list-style: none;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.dropdown > li {
+  margin-bottom: 0.5rem;
+}
+
+.dropdown menu {
+  list-style: none;
+  padding-left: 1rem;
+}
