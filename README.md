@@ -39,16 +39,11 @@ O registro de novos usuários no sistema é feito manualmente via SQL, garantind
 
 ## 📦 Como Iniciar
 
-Por razões de **segurança e boas práticas**, os arquivos de configuração que contêm senhas reais foram removidos do histórico do Git. Para rodar o projeto localmente, siga estes passos:
-
-1.  Certifique-se de que o **PostgreSQL** está rodando em `localhost:5432` e o banco `nhldb` foi criado.
-2.  **Configuração de Banco de Dados**:
-    -   Vá até a pasta `src/main/resources/`.
-    -   Copie o arquivo `application.yml.example` e renomeie a cópia para `application.yml`.
-    -   Edite este novo arquivo `application.yml` e informe as credenciais (username e password) do seu banco de dados local na **linha 11**.
-3.  Execute o comando: `./mvnw spring-boot:run`
-4.  Acesse: `http://localhost:8081`
+1. Certifique-se de que o **PostgreSQL** está rodando em `localhost:5432`.
+2. Verifique se o banco `nhldb` foi criado.
+3. Certifique-se de configurar sua senha no arquivo `src/main/resources/application.yml` (já incluído para facilitar o teste).
+4. Execute o comando: `./mvnw spring-boot:run`
+5. Acesse: `http://localhost:8081`
 
 ---
-> [!TIP]
-> **Nota de Segurança**: Esta abordagem de usar um arquivo `.example` é o padrão da indústria para garantir que senhas privadas não sejam expostas publicamente no GitHub, protegendo a integridade do sistema e do desenvolvedor.
+*Nota: A segurança é gerenciada pelo Spring Security. Para usar o carrinho, crie uma conta em "Cadastrar".*

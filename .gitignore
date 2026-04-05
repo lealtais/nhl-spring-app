@@ -33,7 +33,6 @@ build/
 .vscode/
 
 ### Custom Logs & Crash Files ###
-src/main/resources/application.yml
 *.log
 hs_err_pid*
 replay_pid*

@@ -8,7 +8,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/nhldb
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password: SUA_SENHA_AQUI
+    password: 5972
   jpa:
     hibernate:
       ddl-auto: none
