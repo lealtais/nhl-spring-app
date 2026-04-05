@@ -19,41 +19,58 @@
       </header>
 
       <section class="cards-grid" aria-label="Cards de jogadores da NHL">
-        <button
+        <div
           class="flip-card"
-          type="button"
           th:each="p : ${players}"
-          th:attr="data-flip-card=true, aria-label=${'Ver detalhes de ' + p.name}"
         >
-          <span class="flip-card__inner">
-            <span class="flip-card__face flip-card__front">
-              <span class="player-card">
+          <div class="flip-card__inner">
+            <!-- Front Face -->
+            <div class="flip-card__face flip-card__front">
+              <div class="player-card">
                 <img
                   class="player-card__img"
                   th:src="${p.image}"
                   th:alt="${p.name}"
-                  loading="lazy"
-                  referrerpolicy="no-referrer"
                 />
-                <span class="player-card__name" th:text="${p.name}"></span>
-                <span class="player-card__team" th:text="${p.team}"></span>
-                <span class="player-card__meta"
-                  ><span th:text="${'#' + p.number}"></span> •
-                  <span th:text="${p.position}"></span
-                ></span>
-              </span>
-            </span>
+                <div class="player-card__name" th:text="${p.name}"></div>
+                <div class="player-card__team" th:text="${p.team}"></div>
+                <div class="player-card__meta">
+                  <span th:text="${'#' + p.number}"></span> • 
+                  <span th:text="${p.position}"></span>
+                </div>
+              </div>
+            </div>
 
-            <span class="flip-card__face flip-card__back">
-              <span class="player-card player-card--back">
-                <span class="player-card__name" th:text="${p.name}"></span>
-                <span class="player-card__team" th:text="${p.team}"></span>
-                <span class="player-card__desc" th:text="${p.description}"></span>
-                <span class="player-card__hint">Toque para voltar</span>
-              </span>
-            </span>
-          </span>
-        </button>
+            <!-- Back Face -->
+            <div class="flip-card__face flip-card__back">
+              <div class="player-card player-card--back">
+                <div class="player-card__name" th:text="${p.name}"></div>
+                
+                <div class="player-card__stats">
+                  <div class="stat-item">
+                    <span class="stat-item__label">Posição</span>
+                    <span class="stat-item__value" th:text="${p.position}"></span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-item__label">Ranking</span>
+                    <span class="stat-item__value" th:text="${'#' + p.ranking}"></span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-item__label">Nacionalidade</span>
+                    <span class="stat-item__value" th:text="${p.nationality}"></span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-item__label">Pontuação</span>
+                    <span class="stat-item__value" th:text="${p.score}"></span>
+                  </div>
+                </div>
+
+                <div class="player-card__desc" th:text="${p.description}"></div>
+                <div class="player-card__hint">Passe o mouse para voltar</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   </body>

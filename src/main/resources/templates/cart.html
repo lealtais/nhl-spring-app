@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meu Carrinho - LeafsNation</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <style>
+        .cart-container { max-width: 800px; margin: 40px auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .cart-item { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #eee; }
+        .cart-item:last-child { border-bottom: none; }
+        .cart-item img { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; }
+        .item-info { flex-grow: 1; margin-left: 20px; }
+        .item-name { font-weight: bold; font-size: 1.1rem; color: #00205b; }
+        .item-price { color: #555; }
+        .cart-total { margin-top: 30px; text-align: right; font-size: 1.5rem; font-weight: bold; border-top: 2px solid #00205b; padding-top: 20px; }
+        .btn-checkout { background-color: #00205b; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-size: 1rem; margin-top: 20px; width: 100%; transition: background 0.3s; }
+        .btn-checkout:hover { background-color: #003a8c; }
+        .btn-remove { background: none; border: none; color: #ff4d4d; cursor: pointer; font-size: 0.9rem; }
+        .empty-cart { text-align: center; padding: 40px; color: #777; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #00205b; text-decoration: none; font-weight: bold; }
+    </style>
+  </head>
+  <body style="background-color: #f4f6f9;">
+    <div th:replace="~{fragments/nav :: nav('shop')}"></div>
+
+    <div class="container">
+        <div class="cart-container">
+            <a th:href="@{/leafs-nation-shop}" class="back-link">← Continuar Comprando</a>
+            <h1>Seu Carrinho 🛒</h1>
+
+            <div th:if="${cart.empty}" class="empty-cart">
+                <p>Seu carrinho está vazio.</p>
+                <a th:href="@{/leafs-nation-shop}" class="btn-checkout" style="display: inline-block; text-align: center; text-decoration: none;">Ir para a Loja</a>
+            </div>
+
+            <div th:if="${!cart.empty}">
+                <div th:each="item, iterStat : ${cart}" class="cart-item">
+                    <img th:src="${item.imageUrl}" th:alt="${item.name}">
+                    <div class="item-info">
+                        <div class="item-name" th:text="${item.name}"></div>
+                        <div class="item-price" th:text="'$' + ${item.price}"></div>
+                    </div>
+                    <form th:action="@{/cart/remove}" method="post">
+                        <input type="hidden" name="index" th:value="${iterStat.index}" />
+                        <button type="submit" class="btn-remove">Remover</button>
+                    </form>
+                </div>
+
+                <div class="cart-total" th:text="'Total: $' + ${total}"></div>
+
+                <form th:action="@{/cart/clear}" method="post" style="display: inline-block; width: 48%;">
+                    <button type="submit" class="btn-checkout" style="background-color: #ff4d4d;">Limpar Carrinho</button>
+                </form>
+                <button class="btn-checkout" style="display: inline-block; width: 48%; float: right;" onclick="alert('Funcionalidade de Checkout ainda não implementada!\nObrigado por testar o carrinho!')">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

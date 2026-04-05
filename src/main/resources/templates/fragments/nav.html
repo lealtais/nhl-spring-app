@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <body>
     <header class="site-header" th:fragment="nav(active)">
       <a class="brand" th:href="@{/}" aria-label="Página inicial">
@@ -28,17 +28,17 @@
         </a>
         <a
           class="nav__link"
-          th:href="@{/jogadores/pwhl}"
-          th:attr="data-active=${active == 'pwhl'}"
-        >
-          Jogadores da PWHL
-        </a>
-        <a
-          class="nav__link"
-          th:href="@{/leafs-nation-shop}"
+          th:href="@{/leafs-nation-shop/leafs}"
           th:attr="data-active=${active == 'shop'}"
         >
           Leafs Nation SHOP
+        </a>
+        <a
+          class="nav__link"
+          th:href="@{/cart}"
+          th:attr="data-active=${active == 'cart'}"
+        >
+          🛒 Carrinho
         </a>
         <a
           class="nav__link"
@@ -55,6 +55,11 @@
         >
           Site oficial da NHL
         </a>
+        <a sec:authorize="isAnonymous()" class="nav__link" th:href="@{/login}" th:attr="data-active=${active == 'login'}">Entrar</a>
+        <a sec:authorize="isAnonymous()" class="nav__link" th:href="@{/register}" th:attr="data-active=${active == 'register'}">Cadastrar</a>
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" style="display:inline; margin:0; padding:0;">
+          <button type="submit" class="nav__link" style="border:none; cursor:pointer; font:inherit;">Sair</button>
+        </form>
       </nav>
     </header>
   </body>

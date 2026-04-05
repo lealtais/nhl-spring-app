@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Novo post</title>
+  <link rel="stylesheet" th:href="@{/css/app.css}" />
+</head>
+<body>
+  <div th:replace="~{fragments/nav :: nav('form')}"></div>
+
+  <main class="container">
+    <section>
+      <h1>Cadastrar nova ideia</h1>
+      <form th:action="@{/posts}" th:object="${post}" method="post">
+        <label>
+          Título
+          <input type="text" th:field="*{titulo}" required />
+        </label>
+        <label>
+          Ideia
+          <textarea th:field="*{ideia}" rows="5"></textarea>
+        </label>
+        <label>
+          Plataforma
+          <input type="text" th:field="*{plataforma}" />
+        </label>
+        <label>
+          Status
+          <input type="text" th:field="*{status}" />
+        </label>
+        <label>
+          Data prevista
+          <input type="text" th:field="*{dataPrevista}" placeholder="DD/MM/AAAA" />
+        </label>
+        <button type="submit">Salvar</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

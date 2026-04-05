@@ -3,35 +3,149 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>NHL Spring App</title>
+    <title>Leafs Nation Shop</title>
     <link rel="stylesheet" th:href="@{/css/app.css}" />
     <script defer th:src="@{/js/app.js}"></script>
   </head>
   <body>
     <div th:replace="~{fragments/nav :: nav('home')}"></div>
 
-    <main class="container">
-      <section class="grid">
-        <a class="card" th:href="@{/jogadores/nhl}">
-          <h2 class="card__title">Jogadores da NHL</h2>
-          <p class="card__text">Lista/página de jogadores da NHL.</p>
-        </a>
-        <a class="card" th:href="@{/jogadores/pwhl}">
-          <h2 class="card__title">Jogadores da PWHL</h2>
-          <p class="card__text">Lista/página de jogadores da PWHL.</p>
-        </a>
-        <a class="card" th:href="@{/leafs-nation-shop}">
-          <h2 class="card__title">Leafs Nation SHOP</h2>
-          <p class="card__text">Acesso ao shop (rota interna).</p>
-        </a>
-        <a class="card" th:href="@{/estatisticas-de-jogos}">
-          <h2 class="card__title">Estatísticas de jogos</h2>
-          <p class="card__text">Página de estatísticas (rota interna).</p>
-        </a>
-        <a class="card" th:href="@{/site-oficial-nhl}">
-          <h2 class="card__title">Site oficial da NHL</h2>
-          <p class="card__text">Redireciona para nhl.com.</p>
-        </a>
+    <style>
+      :root {
+        --leafs-blue: #00205b;
+        --accent-color: #004c97;
+        --text-main: #1a1a1a;
+        --bg-light: #f4f7fa;
+      }
+      
+      .hero {
+        padding: 5rem 1rem;
+        text-align: center;
+        background: linear-gradient(135deg, #fff 0%, #e9eff5 100%);
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: var(--leafs-blue);
+        margin-bottom: 1rem;
+        letter-spacing: -1px;
+      }
+
+      .hero p {
+        font-size: 1.25rem;
+        color: #4a5568;
+        max-width: 700px;
+        margin: 0 auto 3rem;
+      }
+
+      .steps-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .step-card {
+        background: white;
+        padding: 2.5rem 2rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 32, 91, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: left;
+        border: 1px solid rgba(0, 32, 91, 0.05);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .step-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 32, 91, 0.1);
+      }
+
+      .step-number {
+        font-size: 4rem;
+        font-weight: 900;
+        color: rgba(0, 32, 91, 0.03);
+        position: absolute;
+        top: -10px;
+        right: 10px;
+      }
+
+      .step-card h3 {
+        color: var(--leafs-blue);
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .step-card p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #64748b;
+        margin-bottom: 0;
+      }
+
+      .step-card a {
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 600;
+        border-bottom: 2px solid transparent;
+        transition: border-color 0.2s;
+      }
+
+      .step-card a:hover {
+        border-color: var(--accent-color);
+      }
+
+      .icon {
+        width: 40px;
+        height: 40px;
+        background: var(--leafs-blue);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+      }
+    </style>
+
+    <main>
+      <section class="hero">
+        <h1>LeafsNation Store</h1>
+        <p>Explore o universo do Toronto Maple Leafs com este sistema integrado.</p>
+        
+        <div class="steps-container">
+          <!-- Passo 1 -->
+          <div class="step-card">
+            <span class="step-number">01</span>
+            <div class="icon">🛒</div>
+            <h3>Explore a Loja</h3>
+            <p>Navegue pelo nosso catálogo oficial no <strong><a th:href="@{/leafs-nation-shop/leafs}">Leafs Nation SHOP</a></strong>.</p>
+          </div>
+
+          <!-- Passo 2 -->
+          <div class="step-card">
+            <span class="step-number">02</span>
+            <div class="icon">🏒</div>
+            <h3>Escolha seu Time</h3>
+            <p>Na página da loja, selecione o escudo do <strong>"Leafs"</strong> para visualizar os produtos exclusivos.</p>
+          </div>
+
+          <!-- Passo 3 -->
+          <div class="step-card">
+            <span class="step-number">03</span>
+            <div class="icon">👤</div>
+            <h3>Finalize sua Compra</h3>
+            <p><strong>Cadastre-se</strong> ou faça <strong>Login</strong> para gerenciar o <strong>Carrinho</strong> e concluir seu pedido.</p>
+          </div>
+        </div>
       </section>
     </main>
   </body>

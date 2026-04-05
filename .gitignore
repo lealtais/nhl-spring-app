@@ -31,3 +31,18 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Custom Logs & Crash Files ###
+src/main/resources/application.yml
+*.log
+hs_err_pid*
+replay_pid*
+startup.log
+maven_debug.log
+effective_pom.log
+error.log
+spring_log.txt
+
+### OS related ###
+.DS_Store
+Thumbs.db

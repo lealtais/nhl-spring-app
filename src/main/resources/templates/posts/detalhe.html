@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalhe do post</title>
+  <link rel="stylesheet" th:href="@{/css/app.css}" />
+</head>
+<body>
+  <div th:replace="~{fragments/nav :: nav('posts')}"></div>
+
+  <main class="container">
+    <section>
+      <h1 th:text="${post.titulo}"></h1>
+      <p><strong>Plataforma:</strong> <span th:text="${post.plataforma}"></span></p>
+      <p><strong>Status:</strong> <span th:text="${post.status}"></span></p>
+      <p><strong>Data prevista:</strong> <span th:text="${post.dataPrevista}"></span></p>
+      <h2>Ideia</h2>
+      <p th:text="${post.ideia}"></p>
+      <a th:href="@{/posts}">Voltar para a lista</a>
+    </section>
+  </main>
+</body>
+</html>

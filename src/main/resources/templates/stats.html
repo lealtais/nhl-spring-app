@@ -3,36 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Estatísticas de jogos</title>
+    <title>Estatísticas de Jogo</title>
     <link rel="stylesheet" th:href="@{/css/app.css}" />
     <script defer th:src="@{/js/app.js}"></script>
   </head>
   <body>
     <div th:replace="~{fragments/nav :: nav('stats')}"></div>
 
-    <main class="container">
-      <header class="page-head">
-        <h1>Estatísticas de jogos</h1>
-        <p class="muted">Rota interna: <code>/estatisticas-de-jogos</code>.</p>
-      </header>
-
-      <section class="grid grid--tight">
-        <article class="stat">
-          <div class="stat__label">Jogos</div>
-          <div class="stat__value">82</div>
-        </article>
-        <article class="stat">
-          <div class="stat__label">Gols</div>
-          <div class="stat__value">0</div>
-        </article>
-        <article class="stat">
-          <div class="stat__label">Assistências</div>
-          <div class="stat__value">0</div>
-        </article>
-        <article class="stat">
-          <div class="stat__label">Pontos</div>
-          <div class="stat__value">0</div>
-        </article>
+    <main class="container" style="display: flex; align-items: center; justify-content: center; min-height: 70vh;">
+      <section style="text-align: center;">
+        <h1 style="font-size: 3rem; color: #00205b; margin-bottom: 1rem;">📈 Estatísticas de Jogo</h1>
+        <p style="font-size: 1.5rem; color: #64748b; font-weight: 600;">Função logo em breve</p>
       </section>
     </main>
   </body>

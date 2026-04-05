@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Posts</title>
+  <link rel="stylesheet" th:href="@{/css/app.css}" />
+</head>
+<body>
+  <div th:replace="~{fragments/nav :: nav('posts')}"></div>
+
+  <main class="container">
+    <section>
+      <h1>Lista de posts</h1>
+      <a class="btn" th:href="@{/posts/new}">Cadastrar nova ideia</a>
+      <div class="post-list">
+        <div th:if="${posts.isEmpty()}">
+          <p>Não há posts cadastrados ainda.</p>
+        </div>
+        <ul>
+          <li th:each="post : ${posts}">
+            <a th:href="@{/posts/{id}(id=${post.id})}">
+              <strong th:text="${post.titulo}"></strong>
+              <span th:text="${post.plataforma}"></span>
+              <small th:text="${post.status}"></small>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

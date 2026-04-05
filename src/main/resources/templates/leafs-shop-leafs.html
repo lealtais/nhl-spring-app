@@ -7,6 +7,69 @@
     <link rel="stylesheet" th:href="@{/css/app.css}" />
     <link rel="stylesheet" th:href="@{/leafs-shop/leafsPageStyle.css}" />
     <script defer th:src="@{/js/app.js}"></script>
+    <style>
+      /* Snackbar/Toast Premium */
+      #cart-toast {
+        visibility: hidden;
+        min-width: 300px;
+        background-color: #00205b;
+        color: #fff;
+        text-align: center;
+        border-radius: 12px;
+        padding: 20px;
+        position: fixed;
+        z-index: 1000;
+        left: 50%;
+        bottom: 40px;
+        transform: translateX(-50%) translateY(20px);
+        font-size: 1rem;
+        font-weight: 700;
+        box-shadow: 0 15px 35px rgba(0,32,91,0.2);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border: 1px solid rgba(255,255,255,0.1);
+        transition: visibility 0s, opacity 0.3s linear, transform 0.3s ease-out;
+        opacity: 0;
+      }
+
+      #cart-toast.show {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .badge {
+        background: #e0f2fe;
+        color: #0369a1;
+        padding: 4px 12px;
+        border-radius: 99px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        display: inline-block;
+      }
+      .product-id {
+        font-size: 0.7rem;
+        color: #94a3b8;
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+      .category-link {
+        text-decoration: none;
+        color: #64748b;
+        font-size: 0.9rem;
+        transition: color 0.2s;
+        display: block;
+        padding: 4px 0;
+      }
+      .category-link:hover {
+        color: #00205b;
+      }
+      .category-link.active {
+        color: #00205b;
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
     <div th:replace="~{fragments/nav :: nav('shop')}"></div>
@@ -15,236 +78,141 @@
       <main class="layout">
         <aside class="sidebar">
           <section>
-            <h2>Keywords</h2>
-            <ul>
-              <li><button type="button">Spring ✕</button></li>
-              <li><button type="button">Smart ✕</button></li>
-              <li><button type="button">Modern ✕</button></li>
+            <h2>Categorias</h2>
+            <ul style="list-style: none; padding: 0;">
+              <li style="margin-bottom: 12px;">
+                <a th:href="@{/leafs-nation-shop/leafs}" 
+                   th:class="${param.category == null ? 'category-link active' : 'category-link'}">
+                   Limpar Filtros
+                </a>
+              </li>
+              <li style="margin-bottom: 8px;">
+                <a th:href="@{/leafs-nation-shop/leafs(category='Roupas')}" 
+                   th:class="${param.category != null and param.category[0] == 'Roupas' ? 'category-link active' : 'category-link'}">
+                   Roupas
+                </a>
+              </li>
+              <li style="margin-bottom: 8px;">
+                <a th:href="@{/leafs-nation-shop/leafs(category='Acessórios')}" 
+                   th:class="${param.category != null and param.category[0] == 'Acessórios' ? 'category-link active' : 'category-link'}">
+                   Acessórios
+                </a>
+              </li>
+              <li style="margin-bottom: 8px;">
+                <a th:href="@{/leafs-nation-shop/leafs(category='Colecionáveis')}" 
+                   th:class="${param.category != null and param.category[0] == 'Colecionáveis' ? 'category-link active' : 'category-link'}">
+                   Colecionáveis
+                </a>
+              </li>
+              <li style="margin-bottom: 8px;">
+                <a th:href="@{/leafs-nation-shop/leafs(category='Kits')}" 
+                   th:class="${param.category != null and param.category[0] == 'Kits' ? 'category-link active' : 'category-link'}">
+                   Kits
+                </a>
+              </li>
             </ul>
           </section>
 
-          <form>
-            <fieldset>
-              <legend>Products</legend>
-              <label><input type="checkbox" checked /> Clothes</label><br />
-              <label><input type="checkbox" checked /> Hats</label><br />
-              <label><input type="checkbox" checked /> Acessories</label>
-              <label for="price">Label</label>
-              <input type="range" min="0" max="100" id="price" />
-            </fieldset>
-
-            <fieldset>
-              <legend>Color</legend>
-              <label><input type="checkbox" checked /> Blue</label><br />
-              <label><input type="checkbox" checked /> White</label><br />
-              <label><input type="checkbox" checked /> Black</label>
-            </fieldset>
-
-            <fieldset>
-              <legend>Size</legend>
-              <label><input type="checkbox" checked /> Label</label><br />
-              <label><input type="checkbox" checked /> Label</label><br />
-              <label><input type="checkbox" checked /> Label</label>
-            </fieldset>
-          </form>
+          <div style="margin-top: 2rem; padding: 1.5rem; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
+             <h4 style="color: #00205b; margin-bottom: 0.5rem; font-size: 0.9rem;">Dica do Toronto</h4>
+             <p style="font-size: 0.8rem; color: #64748b; line-height: 1.4;">Use a busca acima para encontrar itens por nome como "Jersey" ou "Puck".</p>
+          </div>
         </aside>
 
         <section class="main-content">
+          <!-- Premium Snackbar -->
+          <div id="cart-toast">
+             <div style="background: #004c97; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">✓</div>
+             Item adicionado ao carrinho!
+          </div>
+
           <header class="toolbar">
-            <form>
-              <label for="search">Search</label>
-              <input type="search" id="search" placeholder="Search" />
+            <form th:action="@{/leafs-nation-shop/leafs}" method="get" style="display: flex; gap: 10px; width: 100%; max-width: 600px;">
+              <!-- Manter a categoria atual na busca -->
+              <input type="hidden" name="category" th:if="${param.category != null}" th:value="${param.category}" />
+              
+              <div style="position: relative; flex: 1;">
+                <input type="search" name="query" th:value="${param.query}" 
+                       placeholder="Buscar por nome ou descrição..." 
+                       style="width: 100%; padding: 10px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 0.95rem; outline: none; transition: border-color 0.2s;" />
+              </div>
+              <button type="submit" style="padding: 10px 24px; background: #00205b; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: opacity 0.2s;">
+                Buscar
+              </button>
             </form>
 
-            <a
-              th:href="@{/leafs-nation-shop}"
-              style="text-decoration: none; padding: 0.5rem 0.75rem"
-              >← Voltar</a
-            >
-
-            <menu class="dropdown">
-              <li>
-                <button type="button">A</button> List item
-                <menu>
-                  <li>Size</li>
-                  <li>Quantity</li>
-                </menu>
-              </li>
-              <li>
-                <button type="button">A</button> List item
-                <menu>
-                  <li>Size</li>
-                  <li>Quantity</li>
-                </menu>
-              </li>
-            </menu>
+            <div th:if="${param.category != null or param.query != null}" style="display: flex; gap: 8px; align-items: center;">
+                <span class="badge" th:if="${param.category != null}" th:text="${'Filtro: ' + param.category}"></span>
+                <span class="badge" th:if="${param.query != null}" th:text="${'Busca: ' + param.query}"></span>
+                <a th:href="@{/leafs-nation-shop/leafs}" style="font-size: 0.8rem; color: #ef4444; font-weight: bold; text-decoration: none; margin-left: 8px;">Limpar Tudo</a>
+            </div>
           </header>
 
           <section class="grid">
-            <article class="product">
-              <img
-                src="https://fanatics.frgimages.com/toronto-maple-leafs/mens-47-navy-toronto-maple-leafs-team-clean-up-adjustable-hat_pi4028000_ff_4028803-0c55d82354f805418204_full.jpg?_hv=2&w=400"
-                alt="Navy blue hockey cap"
-              />
-              <p>Navy blue hockey cap</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://fanatics.frgimages.com/toronto-maple-leafs/mens-mitchell-and-ness-white-toronto-maple-leafs-core-team-ground-20-snapback-hat_ss5_p-200398862+u-eyhjqbs2toftqsveqqyh+v-elruzwrklnemup5j3nod.jpg?_hv=2&w=400"
-                alt="Navy blue and white hockey cap"
-              />
-              <p>Navy blue and White hockey cap</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://fanatics.frgimages.com/toronto-maple-leafs/womens-fanatics-mitchell-marner-black-toronto-maple-leafs-alternate-premier-breakaway-reversible-player-jersey_pi4299000_altimages_ff_4299173-876faf9b620aac273769alt1_full.jpg?_hv=2&w=900"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://fanatics.frgimages.com/toronto-maple-leafs/mens-concepts-sport-navy-toronto-maple-leafs-big-and-tall-pullover-hoodie-and-joggers-sleep-set_pi4349000_altimages_ff_4349177-c1c184f142c2f8af34a6alt1_full.jpg?_hv=2&w=900"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://fanatics.frgimages.com/toronto-maple-leafs/toronto-maple-leafs-unsigned-sportstar-royal-blue-mini-helmet_pi4042000_ff_4042655-3fbfd2c4304309ed15e3_full.jpg?_hv=2&w=900"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://images.footballfanatics.com/toronto-maple-leafs/womens-fanatics-white/blue-toronto-maple-leafs-authentic-pro-rink-cuffed-knit-hat-with-pom_ss5_p-200897938+u-k0dt6qjecqeuxjkh8iiv+v-6wkf5iqfbrdqd9z4bhsx.jpg?_hv=2&w=400"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://fanatics.frgimages.com/toronto-maple-leafs/wincraft-toronto-maple-leafs-20-x-30-personalized-floor-mat_pi3801000_ff_3801078-f468217bd847291388e4_full.jpg?_hv=2&w=400"
-                alt="Product"
-              />
-              <p>txt</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://images.footballfanatics.com/toronto-maple-leafs/toronto-maple-leafs-unsigned-1967-stanley-cup-champions-logo-hockey-puck_pi3082000_ff_3082174_full.jpg?_hv=2&w=400"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://images.footballfanatics.com/toronto-maple-leafs/tervis-toronto-maple-leafs-24oz-top-shelf-classic-tumbler_pi5057000_ff_5057449-b937cebc8d2c6d9b65cd_full.jpg?_hv=2&w=400"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://images.footballfanatics.com/toronto-maple-leafs/wincraft-toronto-maple-leafs-4-pack-12oz-can-and-slim-can-cooler-set_ss5_p-201708819+u-brnq7i7f1i6ykdlvkela+v-thgpevf4vc9epp5uyczg.jpg?_hv=2&w=400"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://images.footballfanatics.com/toronto-maple-leafs/womens-fanatics-white/blue-toronto-maple-leafs-authentic-pro-rink-cuffed-knit-hat-with-pom_ss5_p-200897938+u-k0dt6qjecqeuxjkh8iiv+v-6wkf5iqfbrdqd9z4bhsx.jpg?_hv=2&w=400"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://fanatics.frgimages.com/toronto-maple-leafs/mitchell-marner-toronto-maple-leafs-3575-x-2425-player-poster_pi4392000_ff_4392233-baa6d3f1809fbaf9f212_full.jpg?_hv=2&w=400"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://images.footballfanatics.com/toronto-maple-leafs/toronto-maple-leafs-mahogany-logo-mini-helmet-display-case_pi3935000_ff_3935487-fec3f4ae4849afd524dd_full.jpg?_hv=2&w=400"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://images.footballfanatics.com/toronto-maple-leafs/tervis-toronto-maple-leafs-16oz-tradition-classic-mug_ss5_p-200028182+u-5c8uhyalkh495csm9yp7+v-ythew2wyq16nsjlnglcd.jpg?_hv=2&w=400"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://images.footballfanatics.com/toronto-maple-leafs/foco-toronto-maple-leafs-ball-garden-stone_pi4532000_ff_4532057-c3a5025b94021af418af_full.jpg?_hv=2&w=400"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://images.footballfanatics.com/toronto-maple-leafs/tervis-toronto-maple-leafs-24oz-all-over-classic-tumbler_pi5033000_ff_5033952-b3091f150a48d78ff438_full.jpg?_hv=2&w=400"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://images.footballfanatics.com/toronto-maple-leafs/womens-wear-by-erin-andrews-toronto-maple-leafs-stripe-glove-and-scarf-set_ss5_p-5359609+u-tykmtuuxbcqfr7ytnoiu+v-t7chucwhn34qi828vbf2.jpg?_hv=2&w=400"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://fanatics.frgimages.com/toronto-maple-leafs/toronto-maple-leafs-personalized-wireless-keyboard_pi4734000_ff_4734150-accb61434cbeb95b33a5_full.jpg?_hv=2&w=400"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://fanatics.frgimages.com/toronto-maple-leafs/toronto-maple-leafs-personalized-insignia-design-wireless-earbuds_pi4734000_ff_4734182-59914cbd6332fd07f20b_full.jpg?_hv=2&w=400"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
-            </article>
-            <article class="product">
-              <img
-                src="https://fanatics.frgimages.com/toronto-maple-leafs/toronto-maple-leafs-personalized-bluetooth-gaming-headphones-and-stand_pi5192000_ff_5192240-863de2c394c06011b496_full.jpg?_hv=2&w=400"
-                alt="Product"
-              />
-              <p>Text</p>
-              <strong>$0</strong>
+            <!-- Estado Vazio -->
+            <div th:if="${#lists.isEmpty(items)}" style="grid-column: 1 / -1; text-align: center; padding: 5rem 2rem; background: white; border-radius: 20px; border: 2px dashed #e2e8f0;">
+              <div style="font-size: 5rem; margin-bottom: 1.5rem; opacity: 0.5;">🏒</div>
+              <h2 style="color: #00205b; font-size: 1.75rem; margin-bottom: 0.5rem;">Nenhum produto encontrado</h2>
+              <p style="color: #64748b; margin-bottom: 2rem;">Não encontramos nada com esses critérios. Tente outra busca!</p>
+              <a th:href="@{/leafs-nation-shop/leafs}" style="padding: 12px 24px; background: #00205b; color: white; text-decoration: none; border-radius: 8px; font-weight: bold;">
+                Ver todos os Produtos
+              </a>
+            </div>
+
+            <!-- Lista de Produtos -->
+            <article class="product" th:each="item : ${items}">
+              <div style="position: relative;">
+                <img th:src="${item.imageUrl}" th:alt="${item.name}" referrerpolicy="no-referrer" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-bottom: 1px solid #f1f5f9;" />
+              </div>
+              <div style="padding: 1.25rem;">
+                <div class="product-id" th:text="${'ID: #' + item.id}"></div>
+                <div style="font-size: 0.75rem; color: #00205b; font-weight: 800; text-transform: uppercase; margin-bottom: 4px;" th:text="${item.category}"></div>
+                <h3 style="margin: 0 0 8px 0; font-size: 1rem; color: #1e293b; font-weight: 600; line-height: 1.4; height: 2.8em; overflow: hidden;" th:text="${item.name}"></h3>
+                <div style="font-size: 1.25rem; font-weight: 800; color: #00205b; margin-bottom: 1.25rem;" th:text="${'R$ ' + item.price}"></div>
+                
+                <form th:onsubmit="'addToCart(event, ' + ${item.id} + ')'">
+                  <button type="submit" style="width: 100%; padding: 12px; background: #00205b; color: white; border: none; border-radius: 8px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.2s, background 0.2s;">
+                    Adicionar ao Carrinho
+                  </button>
+                </form>
+              </div>
             </article>
           </section>
         </section>
       </main>
     </div>
+
+    <script th:inline="javascript">
+      async function addToCart(event, itemId) {
+        event.preventDefault();
+        
+        // Usar URLSearchParams para compatibilidade total com @RequestParam do Spring
+        const params = new URLSearchParams();
+        params.append('itemId', itemId);
+        
+        try {
+          const response = await fetch('/cart/add', {
+            method: 'POST',
+            body: params,
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          });
+          
+          if (response.ok) {
+            const toast = document.getElementById('cart-toast');
+            toast.classList.add("show");
+            // Tocar um efeito sonoro sutil se necessário (opcional)
+            setTimeout(() => {
+              toast.classList.remove("show");
+            }, 3000);
+          } else {
+            console.error('Erro no servidor ao adicionar item');
+          }
+        } catch (error) {
+          console.error('Erro de conexão:', error);
+        }
+      }
+    </script>
   </body>
 </html>
-
