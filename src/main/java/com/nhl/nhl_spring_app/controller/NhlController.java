@@ -218,4 +218,22 @@ public class NhlController {
 
         return "redirect:/";
     }
+
+    // ===== INTERNAL PROXY FOR NHL API =====
+
+    @GetMapping(value = "/api/proxy/nhl/schedule/{team}/{season}", produces = "application/json")
+    @ResponseBody
+    public org.springframework.http.ResponseEntity<String> getScheduleProxy(@PathVariable String team, @PathVariable String season) {
+        org.springframework.web.client.RestTemplate restTemplate = new org.springframework.web.client.RestTemplate();
+        String url = "https://api-web.nhle.com/v1/club-schedule-season/" + team + "/" + season;
+        return restTemplate.getForEntity(url, String.class);
+    }
+
+    @GetMapping(value = "/api/proxy/nhl/gamecenter/{gameId}/play-by-play", produces = "application/json")
+    @ResponseBody
+    public org.springframework.http.ResponseEntity<String> getPlayByPlayProxy(@PathVariable String gameId) {
+        org.springframework.web.client.RestTemplate restTemplate = new org.springframework.web.client.RestTemplate();
+        String url = "https://api-web.nhle.com/v1/gamecenter/" + gameId + "/play-by-play";
+        return restTemplate.getForEntity(url, String.class);
+    }
 }
