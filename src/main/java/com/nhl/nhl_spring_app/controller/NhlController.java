@@ -221,25 +221,41 @@ public class NhlController {
 
     // ===== INTERNAL PROXY FOR NHL API =====
 
+    private org.springframework.web.client.RestTemplate createNhlRestTemplate() {
+        var factory = new org.springframework.http.client.SimpleClientHttpRequestFactory();
+        factory.setConnectTimeout(java.time.Duration.ofSeconds(5));
+        factory.setReadTimeout(java.time.Duration.ofSeconds(15));
+        var rt = new org.springframework.web.client.RestTemplate(factory);
+        return rt;
+    }
+
     @GetMapping(value = "/api/proxy/nhl/schedule/{team}/{season}", produces = "application/json")
     @ResponseBody
     public org.springframework.http.ResponseEntity<String> getScheduleProxy(@PathVariable String team, @PathVariable String season) {
-        org.springframework.web.client.RestTemplate restTemplate = new org.springframework.web.client.RestTemplate();
-        org.springframework.http.HttpHeaders headers = new org.springframework.http.HttpHeaders();
-        headers.set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
-        org.springframework.http.HttpEntity<String> entity = new org.springframework.http.HttpEntity<>(headers);
-        String url = "https://api-web.nhle.com/v1/club-schedule-season/" + team + "/" + season;
-        return restTemplate.exchange(url, org.springframework.http.HttpMethod.GET, entity, String.class);
+        try {
+            var restTemplate = createNhlRestTemplate();
+            org.springframework.http.HttpHeaders headers = new org.springframework.http.HttpHeaders();
+            headers.set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
+            org.springframework.http.HttpEntity<String> entity = new org.springframework.http.HttpEntity<>(headers);
+            String url = "https://api-web.nhle.com/v1/club-schedule-season/" + team + "/" + season;
+            return restTemplate.exchange(url, org.springframework.http.HttpMethod.GET, entity, String.class);
+        } catch (Exception e) {
+            return org.springframework.http.ResponseEntity.status(500).body("{\"error\":\"" + e.getMessage().replace("\"", "'") + "\"}");
+        }
     }
 
     @GetMapping(value = "/api/proxy/nhl/gamecenter/{gameId}/play-by-play", produces = "application/json")
     @ResponseBody
     public org.springframework.http.ResponseEntity<String> getPlayByPlayProxy(@PathVariable String gameId) {
-        org.springframework.web.client.RestTemplate restTemplate = new org.springframework.web.client.RestTemplate();
-        org.springframework.http.HttpHeaders headers = new org.springframework.http.HttpHeaders();
-        headers.set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
-        org.springframework.http.HttpEntity<String> entity = new org.springframework.http.HttpEntity<>(headers);
-        String url = "https://api-web.nhle.com/v1/gamecenter/" + gameId + "/play-by-play";
-        return restTemplate.exchange(url, org.springframework.http.HttpMethod.GET, entity, String.class);
+        try {
+            var restTemplate = createNhlRestTemplate();
+            org.springframework.http.HttpHeaders headers = new org.springframework.http.HttpHeaders();
+            headers.set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
+            org.springframework.http.HttpEntity<String> entity = new org.springframework.http.HttpEntity<>(headers);
+            String url = "https://api-web.nhle.com/v1/gamecenter/" + gameId + "/play-by-play";
+            return restTemplate.exchange(url, org.springframework.http.HttpMethod.GET, entity, String.class);
+        } catch (Exception e) {
+            return org.springframework.http.ResponseEntity.status(500).body("{\"error\":\"" + e.getMessage().replace("\"", "'") + "\"}");
+        }
     }
 }
