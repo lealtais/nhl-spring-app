@@ -85,7 +85,11 @@
         <div style="margin-bottom: 2rem;">
             <p th:if="${favoritePlayers.empty}" class="muted">Você ainda não salvou nenhuma figurinha.</p>
             <div class="player-grid" th:unless="${favoritePlayers.empty}">
-                <div class="player-card" th:each="fav : ${favoritePlayers}">
+                <div class="player-card" th:each="fav : ${favoritePlayers}" style="position: relative;">
+                    <form th:action="@{/favoritos/players/remove/{id}(id=${fav.id})}" method="post" style="position: absolute; top: 10px; right: 10px;">
+                        <input type="hidden" name="from" value="profile" />
+                        <button type="submit" style="background: #ef4444; color: white; border: none; border-radius: 4px; padding: 4px 8px; cursor: pointer; font-size: 0.8rem; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Remover Figurinha">❌</button>
+                    </form>
                     <img th:src="${fav.image != null ? fav.image : 'https://cms.nhl.bamgrid.com/images/headshots/current/168x168/skater.jpg'}" alt="Player">
                     <h3 th:text="${fav.playerName}" style="margin: 0.5rem 0; font-size: 1.1rem; color: #1e293b;">Nome</h3>
                     <p th:text="${fav.team}" style="color: #64748b; font-size: 0.9rem; margin: 0;">Time</p>
@@ -99,7 +103,7 @@
         <div class="card" style="margin-bottom: 2rem;">
             <p th:if="${favoriteGoals.empty}" class="muted" style="padding: 1rem;">Nenhum gol salvo no Puck Tracker ainda.</p>
             <ul class="purchase-list" th:unless="${favoriteGoals.empty}">
-                <li class="purchase-item" th:each="goal : ${favoriteGoals}">
+                <li class="purchase-item" th:each="goal : ${favoriteGoals}" style="position: relative; padding-right: 100px;">
                     <div style="display:flex; align-items: center; gap: 1rem;">
                         <img th:if="${goal.playerPhoto != null}" th:src="${goal.playerPhoto}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" />
                         <div>
@@ -107,6 +111,10 @@
                             <div class="purchase-date">Período: <span th:text="${goal.period}"></span> | Tempo: <span th:text="${goal.timeInPeriod}"></span> | Chute: <span th:text="${goal.shotType}"></span></div>
                         </div>
                     </div>
+                    <form th:action="@{/favoritos/goals/remove/{id}(id=${goal.id})}" method="post" style="position: absolute; top: 50%; right: 1rem; transform: translateY(-50%);">
+                        <input type="hidden" name="from" value="profile" />
+                        <button type="submit" style="background: #ef4444; color: white; border: none; border-radius: 6px; padding: 6px 12px; cursor: pointer; font-size: 0.8rem; font-weight: bold;">Remover ❌</button>
+                    </form>
                 </li>
             </ul>
         </div>

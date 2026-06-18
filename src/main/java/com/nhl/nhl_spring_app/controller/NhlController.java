@@ -166,7 +166,7 @@ public class NhlController {
 
     @PostMapping("/favoritos/players/remove/{id}")
     @Transactional
-    public String removeFavoritePlayer(@PathVariable Long id) {
+    public String removeFavoritePlayer(@PathVariable Long id, HttpServletRequest request) {
         AppUser user = getCurrentUser();
         if (user == null) return "redirect:/login";
 
@@ -176,12 +176,13 @@ public class NhlController {
             }
         });
 
-        return "redirect:/favoritos";
+        String referer = request.getHeader("Referer");
+        return "redirect:" + (referer != null ? referer : "/favoritos");
     }
 
     @PostMapping("/favoritos/goals/remove/{id}")
     @Transactional
-    public String removeFavoriteGoal(@PathVariable Long id) {
+    public String removeFavoriteGoal(@PathVariable Long id, HttpServletRequest request) {
         AppUser user = getCurrentUser();
         if (user == null) return "redirect:/login";
 
@@ -191,7 +192,8 @@ public class NhlController {
             }
         });
 
-        return "redirect:/favoritos";
+        String referer = request.getHeader("Referer");
+        return "redirect:" + (referer != null ? referer : "/favoritos");
     }
 
     @PostMapping("/favoritos/account/delete")
