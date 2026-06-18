@@ -94,7 +94,7 @@ public class CartController {
         }
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth == null || !auth.isAuthenticated()) {
+        if (auth == null || !auth.isAuthenticated() || auth.getName().equals("anonymousUser")) {
             return "redirect:/login";
         }
 
@@ -110,8 +110,9 @@ public class CartController {
                 userPurchaseRepository.save(purchase);
             }
             session.removeAttribute("cart");
+            return "redirect:/perfil?checkoutSuccess=true";
         }
 
-        return "redirect:/perfil?checkoutSuccess=true";
+        return "redirect:/login";
     }
 }
