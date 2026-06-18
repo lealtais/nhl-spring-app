@@ -141,14 +141,18 @@ public class NhlController {
             @RequestParam(value = "team", required = false) String team,
             @RequestParam(value = "position", required = false) String position,
             @RequestParam(value = "playerNumber", required = false) Integer playerNumber,
-            @RequestParam(value = "image", required = false) String image) {
+            @RequestParam(value = "image", required = false) String image,
+            HttpServletRequest request) {
 
         AppUser user = getCurrentUser();
         if (user == null) return "redirect:/login";
 
+        String referer = request.getHeader("Referer");
+        String redirectUrl = referer != null ? "redirect:" + referer : "redirect:/jogadores/nhl";
+
         // Don't add duplicates
         if (favoritePlayerRepository.findByUserIdAndPlayerId(user.getId(), playerId).isPresent()) {
-            return "redirect:/jogadores/nhl";
+            return redirectUrl;
         }
 
         FavoritePlayer fav = new FavoritePlayer();
@@ -161,7 +165,7 @@ public class NhlController {
         fav.setImage(image);
         favoritePlayerRepository.save(fav);
 
-        return "redirect:/jogadores/nhl";
+        return redirectUrl;
     }
 
     @PostMapping("/favoritos/players/remove/{id}")
