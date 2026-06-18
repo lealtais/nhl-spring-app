@@ -77,27 +77,16 @@ public class ProfileController {
 
         if (user != null) {
             try {
-                // Ensure upload directory exists
-                Path uploadPath = Paths.get(UPLOAD_DIR);
-                if (!Files.exists(uploadPath)) {
-                    Files.createDirectories(uploadPath);
-                }
-
-                // Create a unique file name to avoid overwriting
-                String originalFileName = file.getOriginalFilename();
-                String extension = "";
-                if (originalFileName != null && originalFileName.contains(".")) {
-                    extension = originalFileName.substring(originalFileName.lastIndexOf("."));
-                }
-                String newFileName = UUID.randomUUID().toString() + extension;
-
-                // Save file to disk
+                // Lê os bytes da imagem enviada
                 byte[] bytes = file.getBytes();
-                Path path = Paths.get(UPLOAD_DIR + newFileName);
-                Files.write(path, bytes);
+                // Converte para Base64
+                String base64Image = java.util.Base64.getEncoder().encodeToString(bytes);
+                String mimeType = file.getContentType();
+                // Monta a string no formato Data URL para o HTML renderizar direto
+                String dataUrl = "data:" + mimeType + ";base64," + base64Image;
 
-                // Update user profile picture path
-                user.setProfilePicture("/uploads/" + newFileName);
+                // Salva o texto gigante direto no banco de dados (que tem tipo TEXT)
+                user.setProfilePicture(dataUrl);
                 userRepository.save(user);
 
                 redirectAttributes.addFlashAttribute("successMsg", "Foto atualizada com sucesso!");
