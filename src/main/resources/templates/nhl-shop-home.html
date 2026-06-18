@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NHL Shop Oficial</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <style>
+        .shop-header { text-align: center; padding: 3rem 1rem; background: var(--bg-card); border-bottom: 1px solid #e2e8f0; margin-bottom: 2rem; }
+        .shop-title { font-size: 2.5rem; color: var(--blue); margin-bottom: 1rem; }
+        .search-bar { max-width: 600px; margin: 0 auto; display: flex; gap: 10px; }
+        .search-input { flex: 1; padding: 12px 20px; border: 2px solid #e2e8f0; border-radius: 30px; font-size: 1.1rem; outline: none; }
+        .search-input:focus { border-color: var(--blue); }
+        .search-btn { padding: 12px 24px; background: var(--blue); color: white; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .search-btn:hover { background: #002244; }
+
+        /* NOVO HERO BANNER */
+        .hero-banner {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 400px;
+            margin: 0 auto 3rem auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .hero-slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 3rem;
+        }
+        .hero-slide.active {
+            opacity: 1;
+            z-index: 10;
+        }
+        .hero-slide::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, rgba(0,32,91,0.9) 0%, rgba(0,32,91,0.4) 50%, transparent 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 500px;
+        }
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+        .hero-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #f59e0b;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+        .hero-btn:hover {
+            background: #d97706;
+            transform: scale(1.05);
+        }
+        .hero-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: flex;
+            gap: 10px;
+        }
+        .hero-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .hero-dot.active {
+            background: white;
+            transform: scale(1.3);
+        }
+
+        /* Grade de Times */
+        .teams-section { max-width: 1200px; margin: 4rem auto 2rem; padding: 0 1rem; }
+        .teams-title { font-size: 2rem; text-align: center; margin-bottom: 2rem; color: #1e293b; }
+        .teams-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1.5rem; }
+        .team-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem; text-align: center; text-decoration: none; transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; aspect-ratio: 1; }
+        .team-card:hover { transform: scale(1.05); border-color: var(--blue); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .team-logo { width: 70%; height: auto; object-fit: contain; }
+        
+        /* Resultados de Pesquisa */
+        .search-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+    </style>
+</head>
+<body>
+    <div th:replace="~{fragments/nav :: nav('shop')}"></div>
+
+    <header class="shop-header">
+        <h1 class="shop-title">🛒 NHL Shop Oficial</h1>
+        <p style="color: #64748b; margin-bottom: 2rem;">Encontre produtos oficiais de todas as 32 franquias da liga.</p>
+        
+        <form th:action="@{/nhl-shop}" method="get" class="search-bar">
+            <input type="text" name="query" class="search-input" placeholder="O que você está procurando? (ex: Matthews, Boné, Puck)" th:value="${query}" />
+            <button type="submit" class="search-btn">Pesquisar</button>
+        </form>
+    </header>
+
+    <main>
+        <!-- SE MODO PESQUISA -->
+        <div th:if="${isSearch}" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2 style="font-size: 1.8rem;">Resultados para "<span th:text="${query}"></span>"</h2>
+                <a th:href="@{/nhl-shop}" style="color: var(--blue); text-decoration: none; font-weight: bold;">← Voltar para Destaques</a>
+            </div>
+            
+            <p th:if="${items.empty}" class="muted" style="text-align: center; padding: 3rem; font-size: 1.2rem;">Nenhum produto encontrado. Tente buscar por outra palavra!</p>
+            
+            <div class="search-grid" th:unless="${items.empty}">
+                <div class="product-card" th:each="item : ${items}">
+                    <img th:src="${item.imageUrl}" alt="Produto" class="product-img" />
+                    <h3 class="product-name" th:text="${item.name}">Produto</h3>
+                    <p class="product-price" th:text="'$ ' + ${item.price}">$ 0.00</p>
+                    <form th:action="@{/cart/add}" method="post">
+                        <input type="hidden" name="itemId" th:value="${item.id}" />
+                        <button type="submit" class="btn-buy">Adicionar ao Carrinho</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- SE MODO HOME (BANNER + TIMES) -->
+        <div th:unless="${isSearch}">
+            
+            <!-- HERO BANNER (NOVO CARROSSEL) -->
+            <div class="hero-banner">
+                <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1515787366009-7cbdd2dc587b?auto=format&fit=crop&w=1200&q=80');">
+                    <div class="hero-content">
+                        <h2>Stanley Cup Playoffs</h2>
+                        <p>A glória espera! Vista as cores do seu time e sinta a emoção dos jogos decisivos.</p>
+                        <a href="#teams" class="hero-btn">Explorar Times</a>
+                    </div>
+                </div>
+                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?auto=format&fit=crop&w=1200&q=80');">
+                    <div class="hero-content">
+                        <h2>Novos Lançamentos</h2>
+                        <p>Chegaram os moletons oficiais de vestiário. Treine pesado, torça mais forte.</p>
+                        <a href="#teams" class="hero-btn">Ver Equipamentos</a>
+                    </div>
+                </div>
+                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1542652735873-fb2825bac6e2?auto=format&fit=crop&w=1200&q=80');">
+                    <div class="hero-content">
+                        <h2>Acessórios Exclusivos</h2>
+                        <p>Discos autografados, bonés oficiais do draft e muito mais para a sua coleção.</p>
+                        <a href="#teams" class="hero-btn">Comprar Colecionáveis</a>
+                    </div>
+                </div>
+
+                <div class="hero-controls">
+                    <div class="hero-dot active" onclick="goToSlide(0)"></div>
+                    <div class="hero-dot" onclick="goToSlide(1)"></div>
+                    <div class="hero-dot" onclick="goToSlide(2)"></div>
+                </div>
+            </div>
+
+            <!-- ESCOLHA O TIME -->
+            <section class="teams-section" id="teams">
+                <h2 class="teams-title">Escolha a sua Franquia</h2>
+                <div class="teams-grid">
+                    <a th:each="team : ${teams}" 
+                       th:href="@{/nhl-shop/{abbrev}(abbrev=${team.abbreviation})}" 
+                       class="team-card">
+                        <img class="team-logo" th:src="${team.logoUrl}" th:alt="${team.name}" />
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // Lógica do Hero Banner
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.hero-dot');
+        const totalSlides = slides.length;
+
+        function goToSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            
+            currentSlide = index;
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            let next = (currentSlide + 1) % totalSlides;
+            goToSlide(next);
+        }
+
+        // Se houver slides, ativa o intervalo
+        if(totalSlides > 0) {
+            setInterval(nextSlide, 5000);
+        }
+    </script>
+</body>
+</html>

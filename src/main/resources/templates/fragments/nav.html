@@ -28,10 +28,10 @@
         </a>
         <a
           class="nav__link"
-          th:href="@{/leafs-nation-shop/leafs}"
+          th:href="@{/nhl-shop}"
           th:attr="data-active=${active == 'shop'}"
         >
-          Leafs Nation SHOP
+          NHL Shop Oficial
         </a>
         <a
           class="nav__link"
@@ -42,10 +42,10 @@
         </a>
         <a
           class="nav__link"
-          th:href="@{/estatisticas-de-jogos}"
+          th:href="@{/estatisticas}"
           th:attr="data-active=${active == 'stats'}"
         >
-          Estatísticas de jogos
+          📊 Estatísticas (Puck Tracker)
         </a>
         <a
           class="nav__link nav__link--external"
@@ -55,6 +55,8 @@
         >
           Site oficial da NHL
         </a>
+        <a sec:authorize="isAuthenticated()" class="nav__link" th:href="@{/perfil}" th:attr="data-active=${active == 'profile'}">👤 Meu Perfil</a>
+        <a sec:authorize="hasRole('ADMIN')" class="nav__link" th:href="@{/admin}" th:attr="data-active=${active == 'admin'}">🛡️ Painel Admin</a>
         <a sec:authorize="isAnonymous()" class="nav__link" th:href="@{/login}" th:attr="data-active=${active == 'login'}">Entrar</a>
         <a sec:authorize="isAnonymous()" class="nav__link" th:href="@{/register}" th:attr="data-active=${active == 'register'}">Cadastrar</a>
         <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" style="display:inline; margin:0; padding:0;">

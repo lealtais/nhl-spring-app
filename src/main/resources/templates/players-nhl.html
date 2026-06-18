@@ -1,20 +1,44 @@
 <!doctype html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Jogadores da NHL</title>
     <link rel="stylesheet" th:href="@{/css/app.css}" />
     <script defer th:src="@{/js/app.js}"></script>
+    <style>
+      .fav-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        z-index: 10;
+        background: rgba(0, 0, 0, 0.6);
+        border: none;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, transform 0.2s;
+      }
+      .fav-btn:hover {
+        background: rgba(0, 0, 0, 0.85);
+        transform: scale(1.15);
+      }
+    </style>
   </head>
   <body>
     <div th:replace="~{fragments/nav :: nav('nhl')}"></div>
 
     <main class="container">
-      <header class="page-head">
-        <h1>Jogadores da NHL</h1>
-        <p class="muted">
-          Toque/clique em um card para virar e ver a descrição.
+      <header class="page-head" style="position: relative;">
+        <a th:href="@{/jogadores/nhl}" style="position: absolute; left: 0; top: 10px; color: var(--blue); font-weight: bold; text-decoration: none;">&larr; Voltar aos Times</a>
+        <h1 style="text-align: center;">Elenco: <span th:text="${teamAbbrev}"></span></h1>
+        <p class="muted" style="text-align: center;">
+          Toque/clique em um card para virar e ver os dados do jogador.
         </p>
       </header>
 
@@ -26,7 +50,7 @@
           <div class="flip-card__inner">
             <!-- Front Face -->
             <div class="flip-card__face flip-card__front">
-              <div class="player-card">
+              <div class="player-card" style="position: relative;">
                 <img
                   class="player-card__img"
                   th:src="${p.image}"
@@ -43,7 +67,17 @@
 
             <!-- Back Face -->
             <div class="flip-card__face flip-card__back">
-              <div class="player-card player-card--back">
+              <div class="player-card player-card--back" style="position: relative;">
+                <!-- Favorite button -->
+                <form th:action="@{/favoritos/players/add}" method="post" style="position: absolute; top: 10px; right: 10px; z-index: 10; margin: 0; padding: 0;">
+                  <input type="hidden" name="playerId" th:value="${p.id}" />
+                  <input type="hidden" name="playerName" th:value="${p.name}" />
+                  <input type="hidden" name="team" th:value="${p.team}" />
+                  <input type="hidden" name="position" th:value="${p.position}" />
+                  <input type="hidden" name="playerNumber" th:value="${p.number}" />
+                  <input type="hidden" name="image" th:value="${p.image}" />
+                  <button type="submit" class="fav-btn" title="Adicionar aos favoritos" style="border: 2px solid white;">⭐</button>
+                </form>
                 <div class="player-card__name" th:text="${p.name}"></div>
                 
                 <div class="player-card__stats">
@@ -52,21 +86,24 @@
                     <span class="stat-item__value" th:text="${p.position}"></span>
                   </div>
                   <div class="stat-item">
-                    <span class="stat-item__label">Ranking</span>
-                    <span class="stat-item__value" th:text="${'#' + p.ranking}"></span>
-                  </div>
-                  <div class="stat-item">
                     <span class="stat-item__label">Nacionalidade</span>
                     <span class="stat-item__value" th:text="${p.nationality}"></span>
                   </div>
                   <div class="stat-item">
-                    <span class="stat-item__label">Pontuação</span>
-                    <span class="stat-item__value" th:text="${p.score}"></span>
+                    <span class="stat-item__label">Nascimento</span>
+                    <span class="stat-item__value" th:text="${p.birthDate}" style="font-size: 1rem;"></span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-item__label">Altura</span>
+                    <span class="stat-item__value" th:text="${p.height + ' cm'}" style="font-size: 1rem;"></span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="stat-item__label">Peso</span>
+                    <span class="stat-item__value" th:text="${p.weight + ' kg'}" style="font-size: 1rem;"></span>
                   </div>
                 </div>
 
-                <div class="player-card__desc" th:text="${p.description}"></div>
-                <div class="player-card__hint">Passe o mouse para voltar</div>
+                <div class="player-card__hint" style="margin-top: 15px;">Passe o mouse para voltar</div>
               </div>
             </div>
           </div>
@@ -75,3 +112,4 @@
     </main>
   </body>
 </html>
+

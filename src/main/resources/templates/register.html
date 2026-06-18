@@ -20,6 +20,10 @@
 
         <form th:action="@{/register}" method="post" style="display: flex; flex-direction: column; gap: 14px;">
           <label style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-weight: 600;">E-mail</span>
+            <input type="email" name="email" required style="padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 1rem;" />
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 4px;">
             <span style="font-weight: 600;">Escolha um Usuário</span>
             <input type="text" name="username" required style="padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 1rem;" />
           </label>

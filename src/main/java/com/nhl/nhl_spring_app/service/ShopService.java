@@ -21,7 +21,11 @@ public class ShopService {
         return shopItemDAO.listarTodosProdutos();
     }
 
-    public List<ShopItem> getFilteredItems(String query, String category) {
-        return shopItemDAO.buscarProdutos(query, category);
+    public List<ShopItem> getFilteredItems(String query, String category, String teamAbbrev) {
+        return shopItemDAO.buscarProdutos(query, category, teamAbbrev, null);
+    }
+
+    public List<ShopItem> getFeaturedItems() {
+        return shopItemDAO.buscarProdutos(null, null, null, true);
     }
 }

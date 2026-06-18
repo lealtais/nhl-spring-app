@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meus Favoritos</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <script defer th:src="@{/js/app.js}"></script>
+    <style>
+      .remove-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        z-index: 10;
+        background: rgba(220, 38, 38, 0.8);
+        border: none;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, transform 0.2s;
+      }
+      .remove-btn:hover {
+        background: rgba(220, 38, 38, 1);
+        transform: scale(1.15);
+      }
+      
+      .goal-card {
+        background: var(--bg-card, #1E293B);
+        border-radius: var(--radius-md, 12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1.5rem;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .goal-player {
+        font-size: 1.2rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .goal-player img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .goal-team {
+        color: var(--text-secondary, #94a3b8);
+        font-weight: 600;
+      }
+      .goal-details {
+        font-size: 0.9rem;
+        color: var(--text-muted, #64748b);
+      }
+      
+      .danger-section {
+        margin-top: 4rem;
+        padding: 2rem;
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        border-radius: var(--radius-lg, 16px);
+        text-align: center;
+      }
+      .btn-danger {
+        background: #ef4444;
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: var(--radius-sm, 8px);
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+        margin-top: 1rem;
+      }
+      .btn-danger:hover {
+        background: #dc2626;
+      }
+      
+      .empty-state {
+        text-align: center;
+        padding: 3rem 1rem;
+        color: var(--text-muted, #64748b);
+        background: rgba(255,255,255,0.02);
+        border-radius: 12px;
+        border: 1px dashed rgba(255,255,255,0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div th:replace="~{fragments/nav :: nav('favoritos')}"></div>
+
+    <main class="container">
+      <header class="page-head">
+        <h1>⭐ Meus Favoritos</h1>
+        <p class="muted">Aqui estão suas figurinhas e gols favoritos.</p>
+      </header>
+
+      <section style="margin-bottom: 3rem;">
+        <h2>Figurinhas de Jogadores</h2>
+        
+        <div th:if="${#lists.isEmpty(favoritePlayers)}" class="empty-state">
+          Você ainda não favoritou nenhuma figurinha.
+          <br/><br/>
+          <a th:href="@{/jogadores/nhl}" class="btn">Explorar Jogadores</a>
+        </div>
+        
+        <div th:if="${not #lists.isEmpty(favoritePlayers)}" class="cards-grid" aria-label="Figurinhas Favoritas">
+          <div class="flip-card" th:each="p : ${favoritePlayers}">
+            <div class="flip-card__inner">
+              <div class="flip-card__face flip-card__front">
+                <div class="player-card" style="position: relative;">
+                  <form th:action="@{/favoritos/players/remove/{id}(id=${p.id})}" method="post" style="position: absolute; top: 0; right: 0; z-index: 10; margin: 0; padding: 0;">
+                    <button type="submit" class="remove-btn" title="Remover dos favoritos">✕</button>
+                  </form>
+                  <img class="player-card__img" th:src="${p.image}" th:alt="${p.playerName}" />
+                  <div class="player-card__name" th:text="${p.playerName}"></div>
+                  <div class="player-card__team" th:text="${p.team}"></div>
+                  <div class="player-card__meta">
+                    <span th:text="${'#' + p.playerNumber}"></span> • 
+                    <span th:text="${p.position}"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-bottom: 3rem;">
+        <h2>Gols do Puck Tracker</h2>
+        
+        <div th:if="${#lists.isEmpty(favoriteGoals)}" class="empty-state">
+          Você ainda não favoritou nenhum gol.
+        </div>
+        
+        <div th:if="${not #lists.isEmpty(favoriteGoals)}" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+          <div class="goal-card" th:each="g : ${favoriteGoals}">
+            <form th:action="@{/favoritos/goals/remove/{id}(id=${g.id})}" method="post" style="position: absolute; top: 0; right: 0; z-index: 10; margin: 0; padding: 0;">
+               <button type="submit" class="remove-btn" title="Remover dos favoritos">✕</button>
+            </form>
+            
+            <div class="goal-player">
+              <img th:if="${g.playerPhoto != null and g.playerPhoto != ''}" th:src="${g.playerPhoto}" th:alt="${g.playerName}"/>
+              <div th:if="${g.playerPhoto == null or g.playerPhoto == ''}" style="width:48px; height:48px; background:#334155; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem;">👤</div>
+              <span th:text="${g.playerName}"></span>
+            </div>
+            
+            <div class="goal-team" th:text="${g.team}"></div>
+            <div class="goal-details">
+              Período <span th:text="${g.period}"></span> • Tempo: <span th:text="${g.timeInPeriod}"></span>
+              <br/>
+              Tipo: <span th:text="${g.shotType}"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="danger-section">
+        <h2>Área de Risco</h2>
+        <p>Excluir sua conta removerá todos os seus favoritos e histórico. Essa ação não pode ser desfeita.</p>
+        <form th:action="@{/favoritos/account/delete}" method="post" onsubmit="return confirm('Tem certeza absoluta que deseja excluir sua conta?');">
+          <button type="submit" class="btn-danger">🗑️ Excluir Minha Conta</button>
+        </form>
+      </section>
+
+    </main>
+  </body>
+</html>

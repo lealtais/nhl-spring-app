@@ -44,8 +44,9 @@ public class AuthController {
     @PostMapping("/register")
     public String registerUser(@RequestParam("username") String username,
                                 @RequestParam("password") String password,
+                                @RequestParam("email") String email,
                                 Model model) {
-        if (username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
+        if (username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty() || email == null || email.trim().isEmpty()) {
             model.addAttribute("errorMsg", "Preencha todos os campos!");
             return "register";
         }
@@ -56,7 +57,7 @@ public class AuthController {
         }
 
         // Requisito: INSERT realizado com SQL puro (JDBC) via DAO
-        userDAO.inserirUsuarioManual(username.trim(), password);
+        userDAO.inserirUsuarioManual(username.trim(), password, email.trim());
 
         return "redirect:/leafs-nation-shop/leafs?registered";
     }

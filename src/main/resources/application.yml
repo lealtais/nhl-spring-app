@@ -1,6 +1,10 @@
 spring:
   application:
     name: nhl-spring-app
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
   devtools:
     restart:
       enabled: false
@@ -21,6 +25,22 @@ spring:
   sql:
     init:
       mode: always
+  mail:
+    host: smtp.office365.com
+    port: 587
+    username: nhlspring@outlook.com
+    password: ${EMAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 server:
   port: ${PORT:8081}
+  servlet:
+    session:
+      cookie:
+        same-site: none
+        secure: true

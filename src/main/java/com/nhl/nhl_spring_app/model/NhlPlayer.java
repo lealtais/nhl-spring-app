@@ -11,6 +11,9 @@ public class NhlPlayer {
     private String description;
     private int ranking;
     private double score;
+    private double height;
+    private double weight;
+    private String birthDate;
 
     public NhlPlayer() {
     }
@@ -35,4 +38,10 @@ public class NhlPlayer {
     public void setRanking(int ranking) { this.ranking = ranking; }
     public double getScore() { return score; }
     public void setScore(double score) { this.score = score; }
+    public double getHeight() { return height; }
+    public void setHeight(double height) { this.height = height; }
+    public double getWeight() { return weight; }
+    public void setWeight(double weight) { this.weight = weight; }
+    public String getBirthDate() { return birthDate; }
+    public void setBirthDate(String birthDate) { this.birthDate = birthDate; }
 }

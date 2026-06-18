@@ -20,8 +20,8 @@ public class AppUserDAO {
     /**
      * Requisito: INSERT realizado com SQL puro (JDBC)
      */
-    public void inserirUsuarioManual(String username, String password) {
-        String sql = "INSERT INTO app_user (username, password, role) VALUES (?, ?, ?)";
-        jdbc.update(sql, username, passwordEncoder.encode(password), "USER");
+    public void inserirUsuarioManual(String username, String password, String email) {
+        String sql = "INSERT INTO app_user (username, password, role, email, is_banned, created_at) VALUES (?, ?, ?, ?, false, CURRENT_TIMESTAMP)";
+        jdbc.update(sql, username, passwordEncoder.encode(password), "USER", email);
     }
 }

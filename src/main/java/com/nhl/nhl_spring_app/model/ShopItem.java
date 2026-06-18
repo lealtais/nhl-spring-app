@@ -22,7 +22,20 @@ public class ShopItem {
 
     private String category; // ex: Roupas, Acessórios, Colecionáveis
 
+    private String teamAbbrev;
+    private boolean featured;
+
     public ShopItem() {}
+
+    public ShopItem(String category, String name, String description, BigDecimal price, String imageUrl, String teamAbbrev, boolean featured) {
+        this.category = category;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.teamAbbrev = teamAbbrev;
+        this.featured = featured;
+    }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -36,4 +49,8 @@ public class ShopItem {
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
     public String getCategory() { return category; }
     public void setCategory(String category) { this.category = category; }
+    public String getTeamAbbrev() { return teamAbbrev; }
+    public void setTeamAbbrev(String teamAbbrev) { this.teamAbbrev = teamAbbrev; }
+    public boolean isFeatured() { return featured; }
+    public void setFeatured(boolean featured) { this.featured = featured; }
 }

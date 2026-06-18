@@ -1,8 +1,14 @@
 package com.nhl.nhl_spring_app.controller;
 
 import com.nhl.nhl_spring_app.model.ShopItem;
+import com.nhl.nhl_spring_app.model.AppUser;
+import com.nhl.nhl_spring_app.model.UserPurchase;
 import com.nhl.nhl_spring_app.repository.ShopItemRepository;
+import com.nhl.nhl_spring_app.repository.UserPurchaseRepository;
+import com.nhl.nhl_spring_app.repository.AppUserRepository;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +23,15 @@ import java.util.Optional;
 public class CartController {
 
     private final ShopItemRepository shopItemRepository;
+    private final UserPurchaseRepository userPurchaseRepository;
+    private final AppUserRepository userRepository;
 
-    public CartController(ShopItemRepository shopItemRepository) {
+    public CartController(ShopItemRepository shopItemRepository,
+                          UserPurchaseRepository userPurchaseRepository,
+                          AppUserRepository userRepository) {
         this.shopItemRepository = shopItemRepository;
+        this.userPurchaseRepository = userPurchaseRepository;
+        this.userRepository = userRepository;
     }
 
     @SuppressWarnings("unchecked")
@@ -72,5 +84,34 @@ public class CartController {
     public String clearCart(HttpSession session) {
         session.removeAttribute("cart");
         return "redirect:/cart";
+    }
+
+    @PostMapping("/checkout")
+    public String checkout(HttpSession session) {
+        List<ShopItem> cart = getCart(session);
+        if (cart.isEmpty()) {
+            return "redirect:/cart";
+        }
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated()) {
+            return "redirect:/login";
+        }
+
+        String username = auth.getName();
+        AppUser user = userRepository.findByUsername(username).orElse(null);
+
+        if (user != null) {
+            for (ShopItem item : cart) {
+                UserPurchase purchase = new UserPurchase();
+                purchase.setUser(user);
+                purchase.setItemName(item.getName());
+                purchase.setPrice(item.getPrice());
+                userPurchaseRepository.save(purchase);
+            }
+            session.removeAttribute("cart");
+        }
+
+        return "redirect:/perfil?checkoutSuccess=true";
     }
 }

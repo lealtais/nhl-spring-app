@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title th:text="'Loja Oficial • ' + ${teamAbbrev}">Loja do Time</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <link rel="stylesheet" th:href="@{/leafs-shop/leafsPageStyle.css}" />
+    <script defer th:src="@{/js/app.js}"></script>
+    <style>
+      /* Snackbar/Toast Premium */
+      #cart-toast {
+        visibility: hidden;
+        min-width: 300px;
+        background-color: #00205b;
+        color: #fff;
+        text-align: center;
+        border-radius: 12px;
+        padding: 20px;
+        position: fixed;
+        z-index: 1000;
+        left: 50%;
+        bottom: 40px;
+        transform: translateX(-50%) translateY(20px);
+        font-size: 1rem;
+        font-weight: 700;
+        box-shadow: 0 15px 35px rgba(0,32,91,0.2);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border: 1px solid rgba(255,255,255,0.1);
+        transition: visibility 0s, opacity 0.3s linear, transform 0.3s ease-out;
+        opacity: 0;
+      }
+
+      #cart-toast.show {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .badge {
+        background: #e0f2fe;
+        color: #0369a1;
+        padding: 4px 12px;
+        border-radius: 99px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        display: inline-block;
+      }
+      .product-id {
+        font-size: 0.7rem;
+        color: #94a3b8;
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+      .category-link {
+        text-decoration: none;
+        color: #64748b;
+        font-size: 0.9rem;
+        transition: color 0.2s;
+        display: block;
+        padding: 4px 0;
+      }
+      .category-link:hover {
+        color: #00205b;
+      }
+      .category-link.active {
+        color: #00205b;
+        font-weight: bold;
+      }
+      .back-to-global {
+        display: inline-block;
+        margin-bottom: 1rem;
+        color: #00205b;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.9rem;
+      }
+      .back-to-global:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div th:replace="~{fragments/nav :: nav('shop')}"></div>
+
+    <div class="leafs-shop">
+      <main class="layout">
+        <aside class="sidebar">
+          
+          <a th:href="@{/nhl-shop}" class="back-to-global">← Voltar para Todos os Times</a>
+          
+          <section>
+            <h2 th:text="'Categorias ' + ${teamAbbrev}">Categorias</h2>
+            <ul style="list-style: none; padding: 0;">
+              <li style="margin-bottom: 12px;">
+                <a th:href="@{/nhl-shop/{abbrev}(abbrev=${teamAbbrev})}" 
+                   th:class="${param.category == null ? 'category-link active' : 'category-link'}">
+                   Limpar Filtros
+                </a>
+              </li>
+              <li style="margin-bottom: 8px;">
+                <a th:href="@{/nhl-shop/{abbrev}(abbrev=${teamAbbrev}, category='Camisas')}" 
+                   th:class="${param.category != null and param.category[0] == 'Camisas' ? 'category-link active' : 'category-link'}">
+                   Camisas
+                </a>
+              </li>
+              <li style="margin-bottom: 8px;">
+                <a th:href="@{/nhl-shop/{abbrev}(abbrev=${teamAbbrev}, category='Roupas')}" 
+                   th:class="${param.category != null and param.category[0] == 'Roupas' ? 'category-link active' : 'category-link'}">
+                   Roupas (Geral)
+                </a>
+              </li>
+              <li style="margin-bottom: 8px;">
+                <a th:href="@{/nhl-shop/{abbrev}(abbrev=${teamAbbrev}, category='Acessórios')}" 
+                   th:class="${param.category != null and param.category[0] == 'Acessórios' ? 'category-link active' : 'category-link'}">
+                   Acessórios
+                </a>
+              </li>
+              <li style="margin-bottom: 8px;">
+                <a th:href="@{/nhl-shop/{abbrev}(abbrev=${teamAbbrev}, category='Colecionáveis')}" 
+                   th:class="${param.category != null and param.category[0] == 'Colecionáveis' ? 'category-link active' : 'category-link'}">
+                   Colecionáveis
+                </a>
+              </li>
+            </ul>
+          </section>
+
+          <div style="margin-top: 2rem; padding: 1.5rem; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
+             <h4 style="color: #00205b; margin-bottom: 0.5rem; font-size: 0.9rem;">Procurando algo?</h4>
+             <p style="font-size: 0.8rem; color: #64748b; line-height: 1.4;">Se você não achou sua camisa favorita na lista, volte à tela inicial e pesquise pelo nome do seu jogador.</p>
+          </div>
+        </aside>
+
+        <section class="main-content">
+          <!-- Premium Snackbar -->
+          <div id="cart-toast">
+             <div style="background: #004c97; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">✓</div>
+             Item adicionado ao carrinho!
+          </div>
+
+          <header class="toolbar">
+            <form th:action="@{/nhl-shop/{abbrev}(abbrev=${teamAbbrev})}" method="get" style="display: flex; gap: 10px; width: 100%; max-width: 600px;">
+              <!-- Manter a categoria atual na busca -->
+              <input type="hidden" name="category" th:if="${param.category != null}" th:value="${param.category}" />
+              
+              <!-- Na tela nova de times, como a gente não passa query, podemos manter ou não.
+                   Vou deixar desativado o input text por enquanto, ou melhor, focar nos botões de filtro. -->
+              <div style="flex: 1;">
+                 <h1 th:text="'Catálogo Oficial: ' + ${teamAbbrev}" style="color: #00205b; margin: 0; font-size: 1.8rem;"></h1>
+              </div>
+            </form>
+
+            <div th:if="${param.category != null}" style="display: flex; gap: 8px; align-items: center;">
+                <span class="badge" th:text="${'Filtro Ativo: ' + param.category}"></span>
+            </div>
+          </header>
+
+          <section class="grid">
+            <!-- Estado Vazio -->
+            <div th:if="${#lists.isEmpty(items)}" style="grid-column: 1 / -1; text-align: center; padding: 5rem 2rem; background: white; border-radius: 20px; border: 2px dashed #e2e8f0;">
+              <div style="font-size: 5rem; margin-bottom: 1.5rem; opacity: 0.5;">🏒</div>
+              <h2 style="color: #00205b; font-size: 1.75rem; margin-bottom: 0.5rem;">Estoque Esgotado</h2>
+              <p style="color: #64748b; margin-bottom: 2rem;">Não encontramos produtos nesta categoria para essa equipe.</p>
+              <a th:href="@{/nhl-shop/{abbrev}(abbrev=${teamAbbrev})}" style="padding: 12px 24px; background: #00205b; color: white; text-decoration: none; border-radius: 8px; font-weight: bold;">
+                Ver todos os Itens
+              </a>
+            </div>
+
+            <!-- Lista de Produtos -->
+            <article class="product" th:each="item : ${items}">
+              <div style="position: relative;">
+                <!-- Fallback na imagem caso não carregue -->
+                <img th:src="${item.imageUrl}" th:alt="${item.name}" 
+                     onerror="this.src='https://via.placeholder.com/300?text=Produto+NHL'"
+                     referrerpolicy="no-referrer" style="width: 100%; aspect-ratio: 1; object-fit: contain; padding: 10px; border-bottom: 1px solid #f1f5f9; background: white;" />
+              </div>
+              <div style="padding: 1.25rem;">
+                <div class="product-id" th:text="${'ID: #' + item.id}"></div>
+                <div style="font-size: 0.75rem; color: #00205b; font-weight: 800; text-transform: uppercase; margin-bottom: 4px;" th:text="${item.category}"></div>
+                <h3 style="margin: 0 0 8px 0; font-size: 1rem; color: #1e293b; font-weight: 600; line-height: 1.4; height: 2.8em; overflow: hidden;" th:text="${item.name}"></h3>
+                <div style="font-size: 1.25rem; font-weight: 800; color: #00205b; margin-bottom: 1.25rem;" th:text="${'R$ ' + item.price}"></div>
+                
+                <form th:onsubmit="'addToCart(event, ' + ${item.id} + ')'">
+                  <button type="submit" style="width: 100%; padding: 12px; background: #00205b; color: white; border: none; border-radius: 8px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, background 0.2s;">
+                    Adicionar ao Carrinho
+                  </button>
+                </form>
+              </div>
+            </article>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script th:inline="javascript">
+      async function addToCart(event, itemId) {
+        event.preventDefault();
+        
+        const params = new URLSearchParams();
+        params.append('itemId', itemId);
+        
+        try {
+          const response = await fetch('/cart/add', {
+            method: 'POST',
+            body: params,
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          });
+          
+          if (response.ok) {
+            const toast = document.getElementById('cart-toast');
+            toast.classList.add("show");
+            setTimeout(() => {
+              toast.classList.remove("show");
+            }, 3000);
+          } else {
+            console.error('Erro no servidor ao adicionar item');
+          }
+        } catch (error) {
+          console.error('Erro de conexão:', error);
+        }
+      }
+    </script>
+  </body>
+</html>

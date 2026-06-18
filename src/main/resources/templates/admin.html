@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Painel de Administração - NHL App</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <style>
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: var(--bg-card, #1E293B);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .admin-table th, .admin-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .admin-table th {
+            background: rgba(0,0,0,0.2);
+            color: var(--text-secondary, #94a3b8);
+            font-weight: 600;
+        }
+        .admin-table tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .status-active { background: #10b981; color: white; }
+        .status-banned { background: #ef4444; color: white; }
+        .btn-action {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn-ban { background: #ef4444; color: white; }
+        .btn-unban { background: #10b981; color: white; }
+    </style>
+</head>
+<body>
+    <div th:replace="~{fragments/nav :: nav('admin')}"></div>
+
+    <main class="container">
+        <header class="page-head">
+            <h1>🛡️ Painel de Administração</h1>
+            <p class="muted">Gestão de Usuários da Plataforma</p>
+        </header>
+
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Usuário</th>
+                    <th>E-mail</th>
+                    <th>Conta Criada Em</th>
+                    <th>Último Acesso</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="u : ${users}">
+                    <td th:text="${u.id}"></td>
+                    <td th:text="${u.username}"></td>
+                    <td th:text="${u.email ?: 'Não informado'}"></td>
+                    <td th:text="${#temporals.format(u.createdAt, 'dd/MM/yyyy HH:mm')}"></td>
+                    <td th:text="${u.lastLogin != null ? #temporals.format(u.lastLogin, 'dd/MM/yyyy HH:mm') : 'Nunca acessou'}"></td>
+                    <td>
+                        <span th:if="${!u.banned}" class="status-badge status-active">ATIVO</span>
+                        <span th:if="${u.banned}" class="status-badge status-banned">BANIDO</span>
+                    </td>
+                    <td>
+                        <form th:if="${u.username != 'admin'}" th:action="@{/admin/users/{id}/ban(id=${u.id})}" method="post">
+                            <button th:if="${!u.banned}" type="submit" class="btn-action btn-ban">Banir</button>
+                            <button th:if="${u.banned}" type="submit" class="btn-action btn-unban">Desbanir</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
