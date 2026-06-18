@@ -138,7 +138,7 @@
             
             <div class="search-grid" th:unless="${items.empty}">
                 <div class="product-card" th:each="item : ${items}">
-                    <img th:src="${item.imageUrl}" alt="Produto" class="product-img" />
+                    <img th:src="${item.imageUrl}" alt="Produto" class="product-img" onerror="this.src='https://ui-avatars.com/api/?name=NHL+Shop&background=e2e8f0&color=00205b&size=400'" />
                     <h3 class="product-name" th:text="${item.name}">Produto</h3>
                     <p class="product-price" th:text="'$ ' + ${item.price}">$ 0.00</p>
                     <form th:action="@{/cart/add}" method="post">
