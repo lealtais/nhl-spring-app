@@ -111,6 +111,19 @@
             </ul>
         </div>
 
+        <!-- Zona de Perigo -->
+        <h2 class="section-title" style="color: #ef4444; border-color: #fca5a5;">⚠️ Zona de Perigo</h2>
+        <div class="card" style="margin-bottom: 2rem; border: 1px solid #fecaca; background: #fef2f2; padding: 1.5rem; border-radius: 8px;">
+            <p style="color: #991b1b; margin-top: 0; margin-bottom: 1rem; font-weight: bold;">
+                Atenção: A exclusão da conta é irreversível. Todos os seus dados, compras, figurinhas e gols favoritos serão apagados permanentemente do banco de dados em cascata.
+            </p>
+            <form th:action="@{/favoritos/account/delete}" method="post" onsubmit="return confirm('Tem certeza absoluta que deseja EXCLUIR sua conta? Todos os dados serão perdidos para sempre!');">
+                <button type="submit" style="background: #ef4444; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem;">
+                    🗑️ Sim, excluir minha conta
+                </button>
+            </form>
+        </div>
+
     </main>
 </body>
 </html>
